@@ -24,7 +24,7 @@
 ### 사용된 기술
 
 <aside>
-💡 `T**ypescript`,`React.js`, `Redux tool-kit`, `tailwindCSS`, `vite`, `express` ,`react` ,`React-router-dom`**
+💡 `Typescript`,`React.js`, `Redux tool-kit`, `tailwindCSS`, `vite`, `express` ,`react` ,`React-router-dom`**
 
 </aside>
 
