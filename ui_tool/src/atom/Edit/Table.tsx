@@ -26,10 +26,10 @@ export const Table = ({ block_id }: { block_id: number }) => {
           headingColumns: tableInfo.col,
         });
 
-        for (let i = 0; i <= tableInfo.row; i++) {
+        for (let i = 0; i <= tableInfo.col; i++) {
           const row = writer.createElement('tableRow');
 
-          for (let j = 0; j <= tableInfo.col; j++) {
+          for (let j = 0; j <= tableInfo.row; j++) {
             const cellContent = writer.createText(`Cell ${i + 1}, ${j + 1}`);
             const tableCell = writer.createElement(
               'tableCell',
