@@ -3,29 +3,33 @@ import type { BlockDesignContent } from 'types';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@store/store';
 import { updateTypeAndContentLayout } from '@store/slice/sliceEditPage';
-import { blockModalToggle } from '@store/slice/sliceModalToggle';
+import { blockModalToggle, clearIndex } from '@store/slice/sliceModalToggle';
 export const ImageContent = ({ list, type }: any) => {
   const dispatch = useDispatch<AppDispatch>();
-  const blockIndex = useSelector(
-    (state: RootState) => state.modalToggle.selectedBlockIndex
+  const { selectedBlockIndex, selectedchildrenBlockIndex } = useSelector(
+    (state: RootState) => state.modalToggle
   );
 
   const handleDispatch = (contentLayout: number, type: string) => {
-    console.log(
-      'contentLayout = ',
-      contentLayout,
-      'type = ',
-      type,
-      'blockIndex =',
-      blockIndex
-    );
-    dispatch(
-      updateTypeAndContentLayout({
-        index: blockIndex,
-        type,
-        contentLayout,
-      })
-    );
+    if (selectedchildrenBlockIndex !== null) {
+      dispatch(
+        updateTypeAndContentLayout({
+          index: selectedBlockIndex,
+          childrenBlockIndex: selectedchildrenBlockIndex,
+          type,
+          contentLayout,
+        })
+      );
+    } else {
+      //중첩구조 아닐시
+      dispatch(
+        updateTypeAndContentLayout({
+          index: selectedBlockIndex,
+          type,
+          contentLayout,
+        })
+      );
+    }
     dispatch(blockModalToggle());
   };
 

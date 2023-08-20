@@ -11,9 +11,14 @@ import { useDispatch } from 'react-redux';
 interface props {
   boxIndex: number;
   blockIndex: number;
+  childrenBlockIndex?: number;
 }
 
-export const ModalLinkSetting = ({ boxIndex, blockIndex }: props) => {
+export const ModalLinkSetting = ({
+  boxIndex,
+  blockIndex,
+  childrenBlockIndex,
+}: props) => {
   const modalElement = document.getElementById('modal') as HTMLElement;
   const dispath = useDispatch<AppDispatch>();
   useEffect(() => {
@@ -35,6 +40,7 @@ export const ModalLinkSetting = ({ boxIndex, blockIndex }: props) => {
             method="Dispatch"
             boxIndex={boxIndex}
             blockIndex={blockIndex}
+            childrenBlockIndex={childrenBlockIndex}
           />
         </ModalContainer>,
         modalElement

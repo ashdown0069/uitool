@@ -1,8 +1,7 @@
-
 export const Line9 = () => {
-    return (
-        <div className='flex justify-center w-[100%] my-4'>
-            <div className='w-[80px] border-[1px] rotate-[315deg]'></div>
-        </div>
-    )
-}
+  return (
+    <div className="flex items-center justify-center h-full">
+      <div className="w-1 h-[150px] bg-grayscale-200 rotate-[60deg]"></div>
+    </div>
+  );
+};

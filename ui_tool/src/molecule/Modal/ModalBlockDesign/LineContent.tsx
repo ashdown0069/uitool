@@ -12,15 +12,16 @@ export const LineContent = ({
   list: BlockDesignContent[];
   type: any;
 }) => {
-  const blockIndex = useSelector(
-    (state: RootState) => state.modalToggle.selectedBlockIndex
+  const { selectedBlockIndex, selectedchildrenBlockIndex } = useSelector(
+    (state: RootState) => state.modalToggle
   );
   const dispatch = useDispatch<AppDispatch>();
 
   const handleDispatch = (contentLayout: number, type: string) => {
     dispatch(
       updateTypeAndContentLayout({
-        index: blockIndex,
+        index: selectedBlockIndex,
+        childrenBlockIndex: selectedchildrenBlockIndex,
         type,
         contentLayout,
       })

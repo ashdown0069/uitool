@@ -11,9 +11,17 @@ const initialState = {
     {
       type: 'initial',
       contentLayout: 0,
-      groupId: '',
       src: [{}],
       link: [{}],
+      hasChildren: false,
+      children: [
+        {
+          type: 'initial',
+          contentLayout: 0,
+          src: [{}],
+          link: [{}],
+        },
+      ],
     },
   ],
 };
@@ -38,12 +46,48 @@ const sliceEditPage = createSlice({
     },
 
     updateTypeAndContentLayout: (state, action) => {
-      const { index, type, contentLayout } = action.payload;
+      const {
+        index,
+        type,
+        contentLayout,
+        numberOfLayouts,
+        childrenClassName,
+        childrenBlockIndex,
+      } = action.payload;
       if (index >= 0 && index < state.page.length) {
-        state.page[index].type = type;
-        state.page[index].contentLayout = contentLayout;
-        state.page[index].src = [{}];
-        state.page[index].link = [{}];
+        if (numberOfLayouts) {
+          //중첩 레이아웃 구조 처음 선택시
+          // state.page[index].type = type;
+          // state.page[index].contentLayout = contentLayout;
+          // state.page[index].src = [{}];
+          // state.page[index].link = [{}];
+          state.page[index].children = Array.from(
+            { length: numberOfLayouts },
+            (_, index) => ({
+              type: 'initial',
+              className: childrenClassName[index],
+              contentLayout: 0,
+              src: [{}],
+              link: [{}],
+            })
+          );
+        }
+        if (state.page[index].type === 'layout' && childrenBlockIndex >= 0) {
+          //레이아웃 구조에서 선택시
+          console.log('----------layout');
+          state.page[index].children[childrenBlockIndex].type = type;
+          state.page[index].children[childrenBlockIndex].contentLayout =
+            contentLayout;
+          state.page[index].children[childrenBlockIndex].src = [{}];
+          state.page[index].children[childrenBlockIndex].link = [{}];
+        } else {
+          //기존구조
+          console.log('----------non layout');
+          state.page[index].type = type;
+          state.page[index].contentLayout = contentLayout;
+          state.page[index].src = [{}];
+          state.page[index].link = [{}];
+        }
       }
     },
     //아래 함수는 중첩 레이아웃구조를 위한 함수
@@ -59,26 +103,40 @@ const sliceEditPage = createSlice({
     //   }));
     //   state.page.splice(index, numberOfLayout, ...nestedLayoutObj);
     // },
-    // updateSrc: (state, action) => {
-    //   const { index, src } = action.payload;
-    //   const srcIndex = src.srcIndex;
-    //   // const hasData = state.page[index].src.find(
-    //   //   (item) => item.imageSrc === src.imageSrc
-    //   // );
-    //   // if (!hasData)
-    //   state.page[index].src[srcIndex] = src;
-    // },
+
     updateSrc: (state, action) => {
-      const { index, src } = action.payload;
-      const srcIndex = src.srcIndex;
-      const existingData = state.page[index].src[srcIndex];
-      state.page[index].src[srcIndex] = { ...existingData, ...src };
+      const { index, src, childrenBlockIndex } = action.payload;
+      if (state.page[index].type === 'layout') {
+        //타입 레이아웃 구조일 경우
+        const srcIndex = src.srcIndex;
+        const existingData =
+          state.page[index].children[childrenBlockIndex].src[srcIndex];
+        state.page[index].children[childrenBlockIndex].src[srcIndex] = {
+          ...existingData,
+          ...src,
+        };
+      } else {
+        const srcIndex = src.srcIndex;
+        const existingData = state.page[index].src[srcIndex];
+        state.page[index].src[srcIndex] = { ...existingData, ...src };
+      }
     },
     updateLink: (state, action) => {
-      const { index, link } = action.payload;
-      const linkIndex = link.linkIndex;
-      const existingData = state.page[index].link[linkIndex];
-      state.page[index].link[linkIndex] = { ...existingData, ...link };
+      const { index, link, childrenBlockIndex } = action.payload;
+      if (state.page[index].type === 'layout') {
+        //타입 레이아웃 구조일 경우
+        const linkIndex = link.linkIndex;
+        const existingData =
+          state.page[index].children[childrenBlockIndex].link[linkIndex];
+        state.page[index].children[childrenBlockIndex].link[linkIndex] = {
+          ...existingData,
+          ...link,
+        };
+      } else {
+        const linkIndex = link.linkIndex;
+        const existingData = state.page[index].link[linkIndex];
+        state.page[index].link[linkIndex] = { ...existingData, ...link };
+      }
     },
     pushEmptyObjToSrcAndLink: (state, action) => {
       const { index } = action.payload;
@@ -122,6 +180,15 @@ const sliceEditPage = createSlice({
       const filteredPage = state.page.filter((_, idx) => idx !== index);
       state.page = filteredPage;
     },
+    setToInitialBlock: (state, action) => {
+      const { index } = action.payload;
+      state.page[index] = {
+        type: 'initial',
+        contentLayout: 0,
+        src: [{}],
+        link: [{}],
+      };
+    },
     putNewBlockTop: (state, action) => {
       const { index } = action.payload;
       if (index < 0 || index >= state.page.length) return state;
@@ -149,7 +216,6 @@ export const {
   setInitialState,
   filteringInitialState,
   updateTypeAndContentLayout,
-  updateBlockForNestedLayout,
   updateLink,
   updateSrc,
   pushEmptyObjToSrcAndLink,
@@ -159,5 +225,6 @@ export const {
   deleteBlock,
   putNewBlockTop,
   putNewBlockBottom,
+  setToInitialBlock,
 } = sliceEditPage.actions;
 export default sliceEditPage;

@@ -62,7 +62,7 @@ export const PreviewPage = () => {
                 LAYOUT_COMPONENT[v.type][`layout${v.contentLayout}`];
               return (
                 <div key={i}>
-                  <Component key={i} block_id={i} />
+                  <Component key={i} blockIndex={i} />
                 </div>
               );
             })}

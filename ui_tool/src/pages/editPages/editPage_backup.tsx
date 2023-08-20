@@ -83,12 +83,12 @@ export const LAYOUT_COMPONENT: any = {
   table: {
     layout1: Table,
   },
-  // layout: {
-  //   layout1: Layout1,
-  //   layout2: Image2,
-  //   layout3: Image3,
-  //   layout4: Image4,
-  // },
+  layout: {
+    layout1: Layout1,
+    layout2: Image2,
+    layout3: Image3,
+    layout4: Image4,
+  },
 };
 let overallIndex = -1;
 export const EditPage = () => {
@@ -151,66 +151,21 @@ export const EditPage = () => {
           >
             {activeTab === 'desktop' && <PageNavigation />}
 
-            {pageData.page.map((block: any, idx: any) => {
-              if (block.type === 'layout') {
-                //블럭디자인 추가에서 레이아웃 선택 O
-                return (
-                  <div
-                    key={idx}
-                    className={activeTab !== 'desktop' ? 'mt-24' : ''}
+            {pageData.page.map((v: any, i: any) => {
+              const Component =
+                LAYOUT_COMPONENT[v.type][`layout${v.contentLayout}`];
+              return (
+                <div key={i} className={activeTab !== 'desktop' ? 'mt-24' : ''}>
+                  <EditBlock
+                    onClickTop={() => handleEditAddBlockHere(i)}
+                    onClickBottom={() => handleEditAddBlockBottom(i)}
+                    index={i}
+                    key={i}
                   >
-                    <EditBlock
-                      onClickTop={() => handleEditAddBlockHere(idx)}
-                      onClickBottom={() => handleEditAddBlockBottom(idx)}
-                      index={idx}
-                      key={idx}
-                    >
-                      <div className="flex" key={idx}>
-                        {block.children.map(
-                          (childrenBlock: any, childrenIdx: any) => {
-                            const Component =
-                              LAYOUT_COMPONENT[childrenBlock.type][
-                                `layout${childrenBlock.contentLayout}`
-                              ];
-
-                            return (
-                              <div
-                                className={childrenBlock.className}
-                                key={childrenIdx}
-                              >
-                                <Component
-                                  key={childrenIdx}
-                                  blockIndex={idx}
-                                  childrenBlockIndex={childrenIdx}
-                                />
-                              </div>
-                            );
-                          }
-                        )}
-                      </div>
-                    </EditBlock>
-                  </div>
-                );
-              } else {
-                //블럭디자인 추가에서 레이아웃 선택 X
-                const Component =
-                  LAYOUT_COMPONENT[block.type][`layout${block.contentLayout}`];
-                return (
-                  <div
-                    key={idx}
-                    className={activeTab !== 'desktop' ? 'mt-24' : ''}
-                  >
-                    <EditBlock
-                      onClickTop={() => handleEditAddBlockHere(idx)}
-                      onClickBottom={() => handleEditAddBlockBottom(idx)}
-                      index={idx}
-                      key={idx}
-                    >
-                      <Component key={idx} blockIndex={idx} />
-                    </EditBlock>
-                  </div>
-                );
-              }
+                    <Component key={i} blockIndex={i} />
+                  </EditBlock>
+                </div>
+              );
             })}
             {activeTab === 'desktop' && <Footer />}
           </GridContainer>

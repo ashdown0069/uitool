@@ -15,17 +15,20 @@ export const LayoutContent = ({ list, type }: any) => {
 
   const handleDispatch = (
     contentLayout: number,
-    numberOfLayout: number,
+    numberOfLayouts: number,
+    childrenClassName: string,
     type: string
   ) => {
     console.log('contentLayout = ', contentLayout, 'type = ', type);
-    // dispatch(
-    //   updateTypeAndContentLayout({
-    //     index: blockIndex,
-    //     type,
-    //     contentLayout,
-    //   })
-    // );
+    dispatch(
+      updateTypeAndContentLayout({
+        index: blockIndex,
+        type,
+        contentLayout,
+        childrenClassName,
+        numberOfLayouts,
+      })
+    );
     // dispatch(
     //   updateBlockForNestedLayout({
     //     index: blockIndex,
@@ -46,7 +49,12 @@ export const LayoutContent = ({ list, type }: any) => {
           <span
             key={el.id}
             onClick={() =>
-              handleDispatch(el.contentLayout, el.numberOfLayout, type)
+              handleDispatch(
+                el.contentLayout,
+                el.numberOfLayouts,
+                el.childrenClassName,
+                type
+              )
             }
           >
             <ModalBlockDesignMediumBox key={el.id}>

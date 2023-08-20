@@ -36,7 +36,7 @@ export const Layout2 = () => {
         // console.log('Component = ', Component)
         return (
           <div key={i} className="w-1/2 p-2 border-2">
-            {<Component key={i} block_id={i} />}
+            {<Component key={i} blockIndex={i} />}
           </div>
         );
       })}

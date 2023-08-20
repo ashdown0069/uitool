@@ -8,12 +8,14 @@ interface ModalButtonProps {
   method: 'PUT' | 'POST' | 'Dispatch';
   boxIndex?: number;
   blockIndex?: number;
+  childrenBlockIndex?: number;
 }
 
 export const ModalButton = ({
   method,
   boxIndex,
   blockIndex,
+  childrenBlockIndex,
 }: ModalButtonProps) => {
   const submit = useSubmit();
   const location = useLocation();
@@ -37,6 +39,7 @@ export const ModalButton = ({
       dispatch(
         updateLink({
           index: blockIndex,
+          childrenBlockIndex: childrenBlockIndex,
           link: { link: data.url, linkIndex: boxIndex },
         })
       );

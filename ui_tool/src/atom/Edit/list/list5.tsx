@@ -2,16 +2,16 @@ import { CardSquareWideRow } from '@atom/Card/CardSquareWideRow';
 import { useSelector } from 'react-redux';
 import { RootState } from '@store/store';
 
-export const list5 = ({ block_id }: { block_id: number }) => {
+export const list5 = ({ blockIndex }: { blockIndex: number }) => {
   const pageLinkData = useSelector(
-    (state: RootState) => state.editPage.page[block_id].link
+    (state: RootState) => state.editPage.page[blockIndex].link
   );
 
   return (
     <div className="flex items-center justify-center h-auto pt-20 pb-20">
-      {block_id !== undefined &&
+      {blockIndex !== undefined &&
         pageLinkData.map((_, idx) => (
-          <CardSquareWideRow key={idx} blockIndex={block_id} boxIndex={idx} />
+          <CardSquareWideRow key={idx} blockIndex={blockIndex} boxIndex={idx} />
         ))}
     </div>
   );

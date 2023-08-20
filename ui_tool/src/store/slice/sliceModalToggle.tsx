@@ -7,7 +7,8 @@ const sliceModalToggle = createSlice({
     commonModalState: null,
     modalDetailState: null,
     modalDuplState: null,
-    selectedBlockIndex: 0,
+    selectedBlockIndex: null,
+    selectedchildrenBlockIndex: null,
   },
   reducers: {
     blockModalToggle: (state) => {
@@ -31,15 +32,24 @@ const sliceModalToggle = createSlice({
     selectBlockIndex: (state, action) => {
       state.selectedBlockIndex = action.payload;
     },
+    selectchildrenBlockIndex: (state, action) => {
+      state.selectedchildrenBlockIndex = action.payload;
+    },
+    clearIndex: (state) => {
+      state.selectedBlockIndex = null;
+      state.selectedchildrenBlockIndex = null;
+    },
   },
 });
 
 export const {
   blockModalToggle,
   selectBlockIndex,
+  selectchildrenBlockIndex,
   commonModalToggle,
   ModalDetailOpen,
   ModalDuplOpen,
   closeAll,
+  clearIndex,
 } = sliceModalToggle.actions;
 export default sliceModalToggle;

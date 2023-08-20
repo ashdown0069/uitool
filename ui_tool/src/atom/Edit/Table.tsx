@@ -5,13 +5,13 @@ import Editor from 'ckeditor5-custom-build/build/ckeditor';
 import { textDefaultConfig } from '@atom/Edit/text/TextDefalutConfig';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { updateSrc } from '@store/slice/sliceEditPage';
-export const Table = ({ block_id }: { block_id: number }) => {
+export const Table = ({ blockIndex }: { blockIndex: number }) => {
   const editorRef = useRef(null);
   const [tableData, setTableData] = useState<any>('');
   const tableInfo = useSelector((state: RootState) => state.table);
   const dispatch = useDispatch<AppDispatch>();
   const fetchedContent = useSelector(
-    (state: RootState) => state.editPage.page[block_id],
+    (state: RootState) => state.editPage.page[blockIndex],
     shallowEqual
   );
   const handleEditorReady = (editor: any) => {
@@ -48,8 +48,8 @@ export const Table = ({ block_id }: { block_id: number }) => {
   };
   return (
     <div className="pt-20 pb-20">
-      {block_id === undefined && <div>Loading...</div>}
-      {block_id !== undefined && (
+      {blockIndex === undefined && <div>Loading...</div>}
+      {blockIndex !== undefined && (
         <CKEditor
           editor={Editor}
           config={textDefaultConfig}
@@ -61,7 +61,7 @@ export const Table = ({ block_id }: { block_id: number }) => {
             console.log(data);
             dispatch(
               updateSrc({
-                index: block_id,
+                index: blockIndex,
                 src: {
                   srcIndex: 0,
                   src: data,

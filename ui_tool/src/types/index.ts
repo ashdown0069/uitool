@@ -82,7 +82,7 @@ interface BlockDesignMap {
 }
 
 interface ToolsPropsType {
-  block_id: number;
+  blockIndex: number;
 }
 
 interface ModalTitleProps {

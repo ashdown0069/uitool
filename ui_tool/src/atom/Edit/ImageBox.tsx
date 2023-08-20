@@ -12,9 +12,15 @@ interface Image1Props {
   height: string;
   boxIndex: number;
   blockIndex: number;
+  childrenBlockIndex?: number;
 }
 
-export const Image = ({ height, boxIndex, blockIndex }: Image1Props) => {
+export const Image = ({
+  height,
+  boxIndex,
+  blockIndex,
+  childrenBlockIndex,
+}: Image1Props) => {
   const [editMode, setEditMode] = useState<boolean>(false);
   useEffect(() => {
     if (location.pathname.startsWith('/edit/')) {
@@ -39,6 +45,7 @@ export const Image = ({ height, boxIndex, blockIndex }: Image1Props) => {
 
   useEffect(() => {
     if (loadedpageData.page[blockIndex].src[boxIndex]?.imageId) {
+      //기본구조
       const getImage = localStorage.getItem(
         loadedpageData.page[blockIndex].src[boxIndex]?.imageId
       );
@@ -47,11 +54,28 @@ export const Image = ({ height, boxIndex, blockIndex }: Image1Props) => {
       if (link?.startsWith('http://') || link?.startsWith('https://')) {
         setIsExternal(() => true);
       }
+    } else if (
+      //중첩 레이아웃구조
+      childrenBlockIndex !== undefined &&
+      loadedpageData.page[blockIndex].children[childrenBlockIndex]?.src[
+        boxIndex
+      ]?.imageId
+    ) {
+      const getImage = localStorage.getItem(
+        loadedpageData.page[blockIndex].children[childrenBlockIndex]?.src[
+          boxIndex
+        ]?.imageId
+      );
+      setSelectedImage(() => getImage);
+      const link =
+        loadedpageData.page[blockIndex].children[childrenBlockIndex]?.link[
+          boxIndex
+        ]?.link;
+      if (link?.startsWith('http://') || link?.startsWith('https://')) {
+        setIsExternal(() => true);
+      }
     }
   }, [loadedpageData]);
-  useEffect(() => {
-    console.log(isExternal);
-  }, [isExternal]);
 
   const addImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files?.[0];
@@ -64,6 +88,7 @@ export const Image = ({ height, boxIndex, blockIndex }: Image1Props) => {
           dispatch(
             updateSrc({
               index: blockIndex,
+              childrenBlockIndex: childrenBlockIndex,
               src: {
                 // imageSrc: reader.result,
                 imageId: imageId,
@@ -110,7 +135,11 @@ export const Image = ({ height, boxIndex, blockIndex }: Image1Props) => {
         <span className="hover:bg-primary-950 flex items-center justify-center w-[30px] h-[30px] bg-primary-900 rounded cursor-pointer">
           <IconLink onClick={() => dispatch(commonModalToggle(boxIndex))} />
           {commonModalState === boxIndex && (
-            <ModalLinkSetting boxIndex={boxIndex} blockIndex={blockIndex} />
+            <ModalLinkSetting
+              boxIndex={boxIndex}
+              blockIndex={blockIndex}
+              childrenBlockIndex={childrenBlockIndex}
+            />
           )}
         </span>
       </div>

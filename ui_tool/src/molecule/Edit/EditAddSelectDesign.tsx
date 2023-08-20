@@ -7,18 +7,28 @@ import { AppDispatch, RootState } from '@store/store';
 import {
   blockModalToggle,
   selectBlockIndex,
+  selectchildrenBlockIndex,
+  clearIndex,
 } from '@store/slice/sliceModalToggle';
 interface EditAddSelectDesignProps {
-  block_id: number;
+  blockIndex: number;
+  childrenBlockIndex?: number;
 }
 
-export const EditAddSelectDesign = ({ block_id }: EditAddSelectDesignProps) => {
+export const EditAddSelectDesign = ({
+  blockIndex,
+  childrenBlockIndex,
+}: EditAddSelectDesignProps) => {
   const dispatch = useDispatch<AppDispatch>();
   const modalState = useSelector(
     (state: RootState) => state.modalToggle.modalState
   );
   const ReDesignSelect = () => {
-    dispatch(selectBlockIndex(block_id));
+    dispatch(clearIndex());
+    dispatch(selectBlockIndex(blockIndex));
+    if (childrenBlockIndex !== undefined) {
+      dispatch(selectchildrenBlockIndex(childrenBlockIndex));
+    }
     dispatch(blockModalToggle());
   };
   // if (!location.pathname.startsWith('/edit/')) {
@@ -27,7 +37,7 @@ export const EditAddSelectDesign = ({ block_id }: EditAddSelectDesignProps) => {
   return (
     <div
       onClick={ReDesignSelect}
-      className="h-[160px] cursor-pointer select-none flex flex-col bg-grayscale-50 text-grayscale-400 items-center justify-center border-dashed border-2 border-grayscale-800 hover:bg-gray-200"
+      className="min-h-[160px] max-h-[300px] h-full cursor-pointer select-none flex flex-col bg-grayscale-50 text-grayscale-400 items-center justify-center border-dashed border-2 border-grayscale-800 hover:bg-gray-200"
     >
       <IconMaginStick />
       디자인을 선택하세요
