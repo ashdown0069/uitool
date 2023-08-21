@@ -67,11 +67,11 @@ export const LAYOUT_COMPONENT: any = {
   },
   text: {
     layout1: Text1,
-    layout2: Text2,
-    layout3: Text3,
-    layout4: Text4,
-    layout5: Text5,
-    layout6: Text6,
+    // layout2: Text2,
+    // layout3: Text3,
+    // layout4: Text4,
+    // layout5: Text5,
+    // layout6: Text6,
   },
   list: {
     layout1: list1,
@@ -170,18 +170,23 @@ export const EditPage = () => {
                           (childrenBlock: any, childrenIdx: any) => {
                             const Component =
                               LAYOUT_COMPONENT[childrenBlock.type][
-                                `layout${childrenBlock.contentLayout}`
+                                `layout${
+                                  childrenBlock.type === 'text'
+                                    ? '1'
+                                    : childrenBlock.contentLayout
+                                }`
                               ];
 
                             return (
                               <div
-                                className={childrenBlock.className}
+                                className={`relative ${childrenBlock.className}`}
                                 key={childrenIdx}
                               >
                                 <Component
                                   key={childrenIdx}
                                   blockIndex={idx}
                                   childrenBlockIndex={childrenIdx}
+                                  contentLayout={childrenBlock.contentLayout}
                                 />
                               </div>
                             );
@@ -194,7 +199,9 @@ export const EditPage = () => {
               } else {
                 //블럭디자인 추가에서 레이아웃 선택 X
                 const Component =
-                  LAYOUT_COMPONENT[block.type][`layout${block.contentLayout}`];
+                  LAYOUT_COMPONENT[block.type][
+                    `layout${block.type === 'text' ? '1' : block.contentLayout}`
+                  ];
                 return (
                   <div
                     key={idx}
@@ -206,7 +213,11 @@ export const EditPage = () => {
                       index={idx}
                       key={idx}
                     >
-                      <Component key={idx} blockIndex={idx} />
+                      <Component
+                        key={idx}
+                        blockIndex={idx}
+                        contentLayout={block.contentLayout}
+                      />
                     </EditBlock>
                   </div>
                 );

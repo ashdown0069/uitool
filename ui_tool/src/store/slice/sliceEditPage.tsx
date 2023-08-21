@@ -14,14 +14,7 @@ const initialState = {
       src: [{}],
       link: [{}],
       hasChildren: false,
-      children: [
-        {
-          type: 'initial',
-          contentLayout: 0,
-          src: [{}],
-          link: [{}],
-        },
-      ],
+      children: [],
     },
   ],
 };
@@ -139,9 +132,14 @@ const sliceEditPage = createSlice({
       }
     },
     pushEmptyObjToSrcAndLink: (state, action) => {
-      const { index } = action.payload;
-      // state.page[index].src.push({});
-      state.page[index].link.push({});
+      const { index, childrenBlockIndex } = action.payload;
+      if (childrenBlockIndex !== undefined) {
+        // state.page[index].children[childrenBlockIndex].src.push({});
+        state.page[index].children[childrenBlockIndex].link.push({});
+      } else {
+        // state.page[index].src.push({});
+        state.page[index].link.push({});
+      }
     },
     deleteSrcAndLink: (state, action) => {
       const { index, boxIndex } = action.payload;

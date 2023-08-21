@@ -12,7 +12,7 @@ import { ModalDetailOpen, ModalDuplOpen } from '@store/slice/sliceModalToggle';
 
 /**list atom : 최상위 div w-1220px 수정해야 할 듯 */
 export const ListPage = ({ id, title, date, path, category }: ListProps) => {
-  console.log('LIST PAGE -------------------', id, title, date, path, category);
+  // console.log('LIST PAGE -------------------', id, title, date, path, category);
   const { modalDetailState, modalDuplState } = useSelector(
     (state: RootState) => state.modalToggle
   );

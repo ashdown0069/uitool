@@ -8,18 +8,21 @@ import { updateSrc } from '@store/slice/sliceEditPage';
 import { ModalLinkSetting } from '@organism/Modal/ModalLinkSetting';
 import { commonModalToggle } from '@store/slice/sliceModalToggle';
 import { Link } from 'react-router-dom';
+import fallback_image from '@assets/fallback-image.png';
 interface Image1Props {
-  height: string;
+  // height: string;
   boxIndex: number;
   blockIndex: number;
   childrenBlockIndex?: number;
+  isCircle?: boolean;
 }
 
-export const Image = ({
-  height,
+export const ImageBox = ({
+  // height,
   boxIndex,
   blockIndex,
   childrenBlockIndex,
+  isCircle,
 }: Image1Props) => {
   const [editMode, setEditMode] = useState<boolean>(false);
   useEffect(() => {
@@ -105,15 +108,12 @@ export const Image = ({
   const handleDefaultImage = (
     event: React.SyntheticEvent<HTMLImageElement, Event>
   ) => {
-    const target = event.currentTarget;
-    if (!target.src.endsWith('https://placehold.co/300x300')) {
-      target.src = 'https://placehold.co/300x300';
-    }
+    event.currentTarget.src = fallback_image;
   };
 
   return (
     <div
-      className={`w-[100%] h-[${height}] ${
+      className={`w-fit h-full ${
         editMode ? 'group' : 'group-disabled'
       } mx-auto flex justify-center items-center`}
     >
@@ -143,10 +143,12 @@ export const Image = ({
           )}
         </span>
       </div>
-      <div className="group-hover:brightness-50">
+      <div className="w-full h-full group-hover:brightness-50">
         {editMode && (
           <img
-            className="object-contain"
+            className={`object-cover w-full h-full ${
+              isCircle ? 'rounded-full' : ''
+            }`}
             src={selectedImage}
             alt="placeholder"
             onError={handleDefaultImage}
@@ -158,7 +160,9 @@ export const Image = ({
             target="_blank"
           >
             <img
-              className="object-contain"
+              className={`object-cover w-full h-full ${
+                isCircle ? 'rounded-full' : ''
+              }`}
               src={selectedImage}
               alt="placeholder"
               onError={handleDefaultImage}
@@ -168,7 +172,9 @@ export const Image = ({
         {!editMode && !isExternal && (
           <Link to={loadedpageData.page[blockIndex].link[boxIndex]?.link}>
             <img
-              className="object-contain"
+              className={`object-cover w-full h-full ${
+                isCircle ? 'rounded-full' : ''
+              }`}
               src={selectedImage}
               alt="placeholder"
               onError={handleDefaultImage}

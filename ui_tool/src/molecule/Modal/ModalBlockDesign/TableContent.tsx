@@ -13,15 +13,16 @@ interface TableProps {
 export const TableContent = ({ type }: TableProps) => {
   const [clickedCell, setClickedCell] = useState<Cell | null>(null);
   const dispatch = useDispatch<AppDispatch>();
-  const blockIndex = useSelector(
-    (state: RootState) => state.modalToggle.selectedBlockIndex
+  const { selectedBlockIndex, selectedchildrenBlockIndex } = useSelector(
+    (state: RootState) => state.modalToggle
   );
   console.log('TableContent type = ', type);
   const handleCellClick = (row: number, col: number) => {
     setClickedCell({ row, col });
     dispatch(
       updateTypeAndContentLayout({
-        index: blockIndex,
+        index: selectedBlockIndex,
+        childrenBlockIndex: selectedchildrenBlockIndex,
         type,
         contentLayout: 1,
       })

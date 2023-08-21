@@ -13,14 +13,15 @@ export const ListContent = ({
   type: string;
 }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const blockIndex = useSelector(
-    (state: RootState) => state.modalToggle.selectedBlockIndex
+  const { selectedBlockIndex, selectedchildrenBlockIndex } = useSelector(
+    (state: RootState) => state.modalToggle
   );
   const handleDispatch = (contentLayout: number, type: string) => {
     console.log('contentLayout = ', contentLayout, 'type = ', type);
     dispatch(
       updateTypeAndContentLayout({
-        index: blockIndex,
+        index: selectedBlockIndex,
+        childrenBlockIndex: selectedchildrenBlockIndex,
         type,
         contentLayout,
       })
