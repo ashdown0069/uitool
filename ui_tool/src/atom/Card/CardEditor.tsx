@@ -94,7 +94,7 @@ interface CardEditorProps {
 //   );
 // };
 
-const CardEditorComponent = ({
+export const CardEditor = ({
   blockIndex,
   boxIndex,
   childrenBlockIndex,
@@ -113,6 +113,7 @@ const CardEditorComponent = ({
       // && !fetchedContent[blockIndex].src[boxIndex].src
     ) {
       // 레이아웃구조 X , 저장된 텍스트 X
+      console.log('블럭구조ㅡㅡㅡㅡㅡㅡㅡㅡㅡ');
       dispatch(
         updateSrc({
           index: blockIndex,
@@ -129,6 +130,7 @@ const CardEditorComponent = ({
       //   ?.src
     ) {
       //레이아웃 중첩 구조, 저장된 텍스트 X
+      console.log('레이아웃 구조ㅡㅡㅡㅡㅡㅡㅡㅡㅡ');
       dispatch(
         updateSrc({
           index: blockIndex,
@@ -152,7 +154,8 @@ const CardEditorComponent = ({
           data={
             fetchedContent[blockIndex].src[boxIndex]?.src
               ? fetchedContent[blockIndex].src[boxIndex]?.src
-              : fetchedContent[blockIndex].children[childrenBlockIndex]?.src[
+              : childrenBlockIndex !== undefined &&
+                fetchedContent[blockIndex].children[childrenBlockIndex]?.src[
                   boxIndex
                 ]?.src
           }
@@ -174,7 +177,7 @@ const CardEditorComponent = ({
     </div>
   );
 };
-export const CardEditor = memo(CardEditorComponent);
+
 // ((blockIndex !== undefined &&
 //   fetchedContent[blockIndex].src[boxIndex].src) ||
 //   (blockIndex !== undefined &&

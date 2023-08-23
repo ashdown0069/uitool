@@ -21,7 +21,7 @@ export const EditBlock = ({
   return (
     <EditGroupContainer>
       <EditAddBlockHereTop onClick={onClickTop} />
-      <div className="w-[100%] h-auto text-center">{children}</div>
+      {children}
       <EditToolsBox blockIndex={index} />
       <EditAddBlockHereBottom onClick={onClickBottom} />
     </EditGroupContainer>

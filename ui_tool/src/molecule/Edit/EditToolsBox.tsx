@@ -70,7 +70,7 @@ export const EditToolsBox = ({ blockIndex }: ToolsPropsType) => {
   };
 
   return (
-    <div className="absolute top-[30px] right-[100px] w-[246px] h-[54px] rounded-full bg-grayscale-600 hidden group-hover:flex z-20 justify-evenly pr-4 pl-4">
+    <div className="absolute top-[15px] right-[50px] w-[246px] h-[54px] rounded-full bg-grayscale-600 hidden group-hover:flex z-20 justify-evenly pr-4 pl-4">
       {pageData.page[blockIndex].type === 'list' ? (
         <button
           className="absolute -left-28 w-[90px] h-full bg-grayscale-600 rounded-3xl text-grayscale-0 text-body2r hover:text-primary-900"

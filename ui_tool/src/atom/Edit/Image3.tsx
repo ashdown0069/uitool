@@ -5,8 +5,15 @@ interface ImageProps {
 }
 export const Image3 = ({ blockIndex, childrenBlockIndex }: ImageProps) => {
   return (
-    <div className="w-[100%] h-auto mx-auto flex justify-center items-center gap-5 overflow-hidden">
-      <ImageBox
+    <div className="flex items-center justify-center h-auto gap-5 mx-auto overflow-hidden w-fit">
+      {Array.from({ length: 3 }, (_, boxIdx) => (
+        <ImageBox
+          boxIndex={boxIdx}
+          blockIndex={blockIndex}
+          childrenBlockIndex={childrenBlockIndex}
+        />
+      ))}
+      {/* <ImageBox
         // height="300px"
         boxIndex={0}
         blockIndex={blockIndex}
@@ -23,7 +30,7 @@ export const Image3 = ({ blockIndex, childrenBlockIndex }: ImageProps) => {
         boxIndex={2}
         blockIndex={blockIndex}
         childrenBlockIndex={childrenBlockIndex}
-      />
+      /> */}
     </div>
   );
 };

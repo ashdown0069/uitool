@@ -11,7 +11,7 @@ export const ImageContent = ({ list, type }: any) => {
   );
 
   const handleDispatch = (contentLayout: number, type: string) => {
-    if (selectedchildrenBlockIndex !== null) {
+    if (selectedchildrenBlockIndex !== undefined) {
       dispatch(
         updateTypeAndContentLayout({
           index: selectedBlockIndex,

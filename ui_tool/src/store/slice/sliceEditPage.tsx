@@ -13,7 +13,7 @@ const initialState = {
       contentLayout: 0,
       src: [{}],
       link: [{}],
-      hasChildren: false,
+      childrenContainerClassName: '',
       children: [],
     },
   ],
@@ -44,6 +44,7 @@ const sliceEditPage = createSlice({
         type,
         contentLayout,
         numberOfLayouts,
+        childrenContainerClassName,
         childrenClassName,
         childrenBlockIndex,
       } = action.payload;
@@ -54,6 +55,8 @@ const sliceEditPage = createSlice({
           // state.page[index].contentLayout = contentLayout;
           // state.page[index].src = [{}];
           // state.page[index].link = [{}];
+          state.page[index].childrenContainerClassName =
+            childrenContainerClassName;
           state.page[index].children = Array.from(
             { length: numberOfLayouts },
             (_, index) => ({

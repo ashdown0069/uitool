@@ -1,18 +1,24 @@
-import { CardBox } from './CardBox';
+import { ImageBox } from '@atom/Edit/ImageBox';
 import { CardEditor } from './CardEditor';
 interface CardProps {
   blockIndex: number;
   boxIndex: number;
+  childrenBlockIndex?: number;
 }
-export const CardSquareWideRow = ({ blockIndex, boxIndex }: CardProps) => {
+export const CardSquareWideRow = ({
+  blockIndex,
+  boxIndex,
+  childrenBlockIndex,
+}: CardProps) => {
   return (
     <div className="cursor-pointer w-[500px] h-fit flex flex-shrink-0 items-center m-2 font-noto">
       <div className="w-[250px] h-[150px] bg-grayscale-200 mb-5">
         {blockIndex !== undefined && (
-          <CardBox
-            isCircle={false}
+          <ImageBox
             blockIndex={blockIndex}
             boxIndex={boxIndex}
+            childrenBlockIndex={childrenBlockIndex}
+            isCircle={false}
           />
         )}
       </div>
@@ -21,6 +27,7 @@ export const CardSquareWideRow = ({ blockIndex, boxIndex }: CardProps) => {
           <CardEditor
             blockIndex={blockIndex}
             boxIndex={boxIndex}
+            childrenBlockIndex={childrenBlockIndex}
             shape="default"
           />
         )}

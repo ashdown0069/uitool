@@ -23,7 +23,8 @@ export const EditAddSelectDesign = ({
   const modalState = useSelector(
     (state: RootState) => state.modalToggle.modalState
   );
-  const ReDesignSelect = () => {
+  const ReDesignSelect = (event) => {
+    event.stopPropagation();
     dispatch(clearIndex());
     dispatch(selectBlockIndex(blockIndex));
     if (childrenBlockIndex !== undefined) {
@@ -35,13 +36,17 @@ export const EditAddSelectDesign = ({
   //   return (null);
   // }
   return (
-    <div
-      onClick={ReDesignSelect}
-      className="min-h-[160px] max-h-[300px] h-full cursor-pointer select-none flex flex-col bg-grayscale-50 text-grayscale-400 items-center justify-center border-dashed border-2 border-grayscale-800 hover:bg-gray-200"
-    >
-      <IconMaginStick />
-      디자인을 선택하세요
+    <>
+      <div
+        className={`min-h-[180px] max-h-[500px] h-full flex flex-col items-center justify-center border-2 border-dashed cursor-pointer select-none  bg-grayscale-50 text-grayscale-400 border-grayscale-800 hover:bg-gray-200`}
+        onClick={ReDesignSelect}
+      >
+        <div className="flex flex-col items-center justify-center">
+          <IconMaginStick />
+          디자인을 선택하세요
+        </div>
+      </div>
       {modalState && <ModalBlockDesign />}
-    </div>
+    </>
   );
 };

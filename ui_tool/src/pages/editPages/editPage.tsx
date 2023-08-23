@@ -42,6 +42,8 @@ import { EditAddSelectDesign } from '@molecule/Edit/EditAddSelectDesign';
 import { PageNavigation } from '@organism/Nav/Navigation';
 import { Footer } from '@organism/Nav/Footer';
 import { setEditMode } from '@store/slice/sliceEditMode';
+import { Image5 } from '@atom/Edit/Image5';
+import { Image6 } from '@atom/Edit/Image6';
 
 export const LAYOUT_COMPONENT: any = {
   initial: {
@@ -52,6 +54,8 @@ export const LAYOUT_COMPONENT: any = {
     layout2: Image2,
     layout3: Image3,
     layout4: Image4,
+    layout5: Image5,
+    layout6: Image6,
   },
   line: {
     layout1: Line1,
@@ -75,10 +79,10 @@ export const LAYOUT_COMPONENT: any = {
   },
   list: {
     layout1: list1,
-    layout2: list2,
-    layout3: list3,
-    layout4: list4,
-    layout5: list5,
+    // layout2: list2,
+    // layout3: list3,
+    // layout4: list4,
+    // layout5: list5,
   },
   table: {
     layout1: Table,
@@ -90,19 +94,11 @@ export const LAYOUT_COMPONENT: any = {
   //   layout4: Image4,
   // },
 };
-let overallIndex = -1;
 export const EditPage = () => {
   const [activeTab, setActiveTab] = useState<string>('desktop');
   // const [idStorage, setIdStorage] = useState<string[]>([]);
   const loadedData: any = useLoaderData();
   const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    //페이지 떠날때 초기화
-    return () => {
-      overallIndex = -1;
-    };
-  }, []);
 
   useEffect(() => {
     dispatch(
@@ -165,7 +161,9 @@ export const EditPage = () => {
                       index={idx}
                       key={idx}
                     >
-                      <div className="flex" key={idx}>
+                      <div
+                        className={`grid gap-3 items-center ${block.childrenContainerClassName}`}
+                      >
                         {block.children.map(
                           (childrenBlock: any, childrenIdx: any) => {
                             const Component =
@@ -173,13 +171,15 @@ export const EditPage = () => {
                                 `layout${
                                   childrenBlock.type === 'text'
                                     ? '1'
+                                    : childrenBlock.type === 'list'
+                                    ? '1'
                                     : childrenBlock.contentLayout
                                 }`
                               ];
 
                             return (
                               <div
-                                className={`relative ${childrenBlock.className}`}
+                                className={`${childrenBlock.className}`}
                                 key={childrenIdx}
                               >
                                 <Component
@@ -200,7 +200,13 @@ export const EditPage = () => {
                 //블럭디자인 추가에서 레이아웃 선택 X
                 const Component =
                   LAYOUT_COMPONENT[block.type][
-                    `layout${block.type === 'text' ? '1' : block.contentLayout}`
+                    `layout${
+                      block.type === 'text'
+                        ? '1'
+                        : block.type === 'list'
+                        ? '1'
+                        : block.contentLayout
+                    }`
                   ];
                 return (
                   <div

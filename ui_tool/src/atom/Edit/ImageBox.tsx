@@ -113,7 +113,7 @@ export const ImageBox = ({
 
   return (
     <div
-      className={`w-fit h-full ${
+      className={`h-full w-full ${
         editMode ? 'group' : 'group-disabled'
       } mx-auto flex justify-center items-center`}
     >

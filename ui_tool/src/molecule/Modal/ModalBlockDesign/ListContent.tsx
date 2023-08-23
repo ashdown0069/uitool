@@ -17,15 +17,25 @@ export const ListContent = ({
     (state: RootState) => state.modalToggle
   );
   const handleDispatch = (contentLayout: number, type: string) => {
-    console.log('contentLayout = ', contentLayout, 'type = ', type);
-    dispatch(
-      updateTypeAndContentLayout({
-        index: selectedBlockIndex,
-        childrenBlockIndex: selectedchildrenBlockIndex,
-        type,
-        contentLayout,
-      })
-    );
+    if (selectedchildrenBlockIndex !== undefined) {
+      dispatch(
+        updateTypeAndContentLayout({
+          index: selectedBlockIndex,
+          childrenBlockIndex: selectedchildrenBlockIndex,
+          type,
+          contentLayout,
+        })
+      );
+    } else {
+      //중첩구조 아닐시
+      dispatch(
+        updateTypeAndContentLayout({
+          index: selectedBlockIndex,
+          type,
+          contentLayout,
+        })
+      );
+    }
     dispatch(blockModalToggle());
   };
   return (

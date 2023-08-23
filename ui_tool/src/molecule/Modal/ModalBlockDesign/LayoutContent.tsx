@@ -1,11 +1,7 @@
 import { ModalBlockDesignMediumBox } from '@atom/Modal/ModalBlockDesign/ModalBlockDesignMediumBox';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@store/store';
-import { v4 as uuidv4 } from 'uuid';
-import {
-  updateBlockForNestedLayout,
-  updateTypeAndContentLayout,
-} from '@store/slice/sliceEditPage';
+import { updateTypeAndContentLayout } from '@store/slice/sliceEditPage';
 import { blockModalToggle } from '@store/slice/sliceModalToggle';
 export const LayoutContent = ({ list, type }: any) => {
   const blockIndex = useSelector(
@@ -16,28 +12,20 @@ export const LayoutContent = ({ list, type }: any) => {
   const handleDispatch = (
     contentLayout: number,
     numberOfLayouts: number,
+    childrenContainerClassName: string,
     childrenClassName: string,
     type: string
   ) => {
-    console.log('contentLayout = ', contentLayout, 'type = ', type);
     dispatch(
       updateTypeAndContentLayout({
         index: blockIndex,
         type,
         contentLayout,
+        childrenContainerClassName,
         childrenClassName,
         numberOfLayouts,
       })
     );
-    // dispatch(
-    //   updateBlockForNestedLayout({
-    //     index: blockIndex,
-    //     type,
-    //     contentLayout,
-    //     numberOfLayout,
-    //     groupId: uuidv4(),
-    //   })
-    // );
     dispatch(blockModalToggle());
   };
 
@@ -52,6 +40,7 @@ export const LayoutContent = ({ list, type }: any) => {
               handleDispatch(
                 el.contentLayout,
                 el.numberOfLayouts,
+                el.childrenContainerClassName,
                 el.childrenClassName,
                 type
               )
