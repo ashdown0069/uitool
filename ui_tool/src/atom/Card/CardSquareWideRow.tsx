@@ -1,10 +1,7 @@
 import { ImageBox } from '@atom/Edit/ImageBox';
 import { CardEditor } from './CardEditor';
-interface CardProps {
-  blockIndex: number;
-  boxIndex: number;
-  childrenBlockIndex?: number;
-}
+import type { CardProps } from 'types';
+
 export const CardSquareWideRow = ({
   blockIndex,
   boxIndex,

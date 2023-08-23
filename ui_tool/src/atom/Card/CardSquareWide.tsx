@@ -1,11 +1,6 @@
-import { SquareWideProps } from 'types';
 import { ImageBox } from '@atom/Edit/ImageBox';
 import { CardEditor } from './CardEditor';
-interface CardProps {
-  blockIndex: number;
-  boxIndex: number;
-  childrenBlockIndex?: number;
-}
+import type { CardProps } from 'types';
 export const CardSquareWide = ({
   blockIndex,
   boxIndex,

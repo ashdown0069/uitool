@@ -1,12 +1,7 @@
-import type { SquareNoramlProps } from 'types';
-import { CardBox } from './CardBox';
 import { CardEditor } from './CardEditor';
 import { ImageBox } from '@atom/Edit/ImageBox';
-interface CardProps {
-  blockIndex: number;
-  boxIndex: number;
-  childrenBlockIndex?: number;
-}
+import type { CardProps } from 'types';
+
 export const CardSquareNomal = ({
   blockIndex,
   boxIndex,

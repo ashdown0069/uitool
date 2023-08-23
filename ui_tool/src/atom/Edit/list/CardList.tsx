@@ -7,11 +7,7 @@ import { CardSquareNomal } from '@atom/Card/CardSquareNormal';
 import { CardSquareBig } from '@atom/Card/CardSquareBig';
 import { CardSquareWide } from '@atom/Card/CardSquareWide';
 import { CardSquareWideRow } from '@atom/Card/CardSquareWideRow';
-interface Props {
-  blockIndex: number;
-  childrenBlockIndex?: number;
-  contentLayout: number;
-}
+import type { IndexAndContentLayoutProps } from 'types';
 
 const cardComponentsMap = [
   '카드 컴포넌트 배열',
@@ -21,11 +17,11 @@ const cardComponentsMap = [
   CardSquareBig,
   CardSquareWideRow,
 ];
-export const list1 = ({
+export const CardList = ({
   blockIndex,
   childrenBlockIndex,
   contentLayout,
-}: Props) => {
+}: IndexAndContentLayoutProps) => {
   const dispatch = useDispatch<AppDispatch>();
   const [editMode, setEditMode] = useState<boolean>(false);
   useEffect(() => {
@@ -33,7 +29,6 @@ export const list1 = ({
       setEditMode(true);
     }
   }, []);
-  console.log('contentLayout ====', contentLayout);
   let pageLinkData;
   if (childrenBlockIndex !== undefined) {
     pageLinkData = useSelector(

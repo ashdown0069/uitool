@@ -9,21 +9,14 @@ import { ModalLinkSetting } from '@organism/Modal/ModalLinkSetting';
 import { commonModalToggle } from '@store/slice/sliceModalToggle';
 import { Link } from 'react-router-dom';
 import fallback_image from '@assets/fallback-image.png';
-interface Image1Props {
-  // height: string;
-  boxIndex: number;
-  blockIndex: number;
-  childrenBlockIndex?: number;
-  isCircle?: boolean;
-}
+import type { ImageBoxProps } from 'types';
 
 export const ImageBox = ({
-  // height,
   boxIndex,
   blockIndex,
   childrenBlockIndex,
   isCircle,
-}: Image1Props) => {
+}: ImageBoxProps) => {
   const [editMode, setEditMode] = useState<boolean>(false);
   useEffect(() => {
     if (location.pathname.startsWith('/edit/')) {

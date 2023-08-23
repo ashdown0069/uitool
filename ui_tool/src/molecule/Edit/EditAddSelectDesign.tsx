@@ -23,8 +23,7 @@ export const EditAddSelectDesign = ({
   const modalState = useSelector(
     (state: RootState) => state.modalToggle.modalState
   );
-  const ReDesignSelect = (event) => {
-    event.stopPropagation();
+  const ReDesignSelect = () => {
     dispatch(clearIndex());
     dispatch(selectBlockIndex(blockIndex));
     if (childrenBlockIndex !== undefined) {

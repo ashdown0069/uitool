@@ -4,7 +4,8 @@ import { textDefaultConfig } from '@atom/Edit/text/TextDefalutConfig';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@store/store';
 import { updateSrc } from '@store/slice/sliceEditPage';
-import { memo, useEffect } from 'react';
+import { useEffect } from 'react';
+import type { CardEditorProps } from 'types';
 const templateMap = {
   circle: `<p style="text-align:center;"><span class="text-big">초단기한글</span></p>`,
   normal: `<p style="text-align:center;"><span class="text-big" style="color:hsl(30,75%,60%);">1:1방문</span></p><p style="text-align:center;"><strong>주 1회 / 과목당 10분</strong></p><p style="text-align:center;">학습관리 및 상담</p>`,
@@ -15,84 +16,6 @@ const templateMap = {
   default: `<p><span class="text-big"><strong>[클래스]</strong></span><p>친구들과 함께 모여 교과과정에 필요한 핵심 과목을 집중적으로 관리
   받습니다.</p></p>`,
 };
-interface CardEditorProps {
-  blockIndex: number;
-  boxIndex: number;
-  childrenBlockIndex?: number;
-  shape: 'circle' | 'normal' | 'wide' | 'big' | 'default';
-}
-// const CardEditorComponent = ({
-//   blockIndex,
-//   boxIndex,
-//   childrenBlockIndex,
-//   shape,
-// }: CardEditorProps) => {
-//   const dispatch = useDispatch<AppDispatch>();
-//   const fetchedContent = useSelector(
-//     (state: RootState) => state.editPage.page[blockIndex],
-//     shallowEqual
-//   );
-
-//   useEffect(() => {
-//     if (childrenBlockIndex === undefined && !fetchedContent.src[boxIndex].src) {
-//       dispatch(
-//         updateSrc({
-//           index: blockIndex,
-//           childrenBlockIndex: childrenBlockIndex,
-//           src: {
-//             srcIndex: boxIndex,
-//             src: templateMap[shape],
-//           },
-//         })
-//       );
-//     } else if (
-//       childrenBlockIndex !== undefined &&
-//       !fetchedContent.children[childrenBlockIndex].src[boxIndex].src
-//     ) {
-//       dispatch(
-//         updateSrc({
-//           index: blockIndex,
-//           src: {
-//             srcIndex: boxIndex,
-//             src: templateMap[shape],
-//           },
-//         })
-//       );
-//     }
-//   }, []);
-
-//   return (
-//     <>
-//       {((blockIndex !== undefined && fetchedContent.src[boxIndex].src) ||
-//         (blockIndex !== undefined &&
-//           childrenBlockIndex !== undefined &&
-//           fetchedContent.children[childrenBlockIndex].src[boxIndex].src)) && (
-//         <CKEditor
-//           editor={Editor}
-//           config={textDefaultConfig}
-//           disabled={!location.pathname.startsWith('/edit/')}
-//           data={
-//             fetchedContent.src[boxIndex]?.src
-//               ? fetchedContent.src[boxIndex]?.src
-//               : fetchedContent.children[childrenBlockIndex]?.src[boxIndex]?.src
-//           }
-//           onChange={(event: any, editor: any) => {
-//             const data = editor.getData();
-//             dispatch(
-//               updateSrc({
-//                 index: blockIndex,
-//                 src: {
-//                   srcIndex: boxIndex,
-//                   src: data,
-//                 },
-//               })
-//             );
-//           }}
-//         />
-//       )}
-//     </>
-//   );
-// };
 
 export const CardEditor = ({
   blockIndex,
@@ -107,13 +30,8 @@ export const CardEditor = ({
   );
 
   useEffect(() => {
-    if (
-      childrenBlockIndex === undefined
-
-      // && !fetchedContent[blockIndex].src[boxIndex].src
-    ) {
+    if (childrenBlockIndex === undefined) {
       // 레이아웃구조 X , 저장된 텍스트 X
-      console.log('블럭구조ㅡㅡㅡㅡㅡㅡㅡㅡㅡ');
       dispatch(
         updateSrc({
           index: blockIndex,
@@ -123,14 +41,8 @@ export const CardEditor = ({
           },
         })
       );
-    } else if (
-      childrenBlockIndex !== undefined
-      //  &&
-      // !fetchedContent[blockIndex].children[childrenBlockIndex]?.src[boxIndex]
-      //   ?.src
-    ) {
+    } else if (childrenBlockIndex !== undefined) {
       //레이아웃 중첩 구조, 저장된 텍스트 X
-      console.log('레이아웃 구조ㅡㅡㅡㅡㅡㅡㅡㅡㅡ');
       dispatch(
         updateSrc({
           index: blockIndex,
@@ -177,10 +89,3 @@ export const CardEditor = ({
     </div>
   );
 };
-
-// ((blockIndex !== undefined &&
-//   fetchedContent[blockIndex].src[boxIndex].src) ||
-//   (blockIndex !== undefined &&
-//     childrenBlockIndex !== undefined &&
-//     fetchedContent[blockIndex].children[childrenBlockIndex].src[boxIndex]
-//       ?.src))

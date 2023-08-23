@@ -5,7 +5,7 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { RootState } from '@store/store';
 import { updateSrc } from '@store/slice/sliceEditPage';
-
+import type { IndexAndContentLayoutProps } from 'types';
 const templateContent = [
   '템플릿 추가는 이 배열에 작성',
   `<p style="text-align:center;"><span style="color:hsl(210,75%,60%);">Lorem Ipsum is simply dummy</span></p><p style="text-align:center;"><span class="text-big"><strong>Lorem Ipsum has been the industry's standard</strong></span></p><p style="text-align:center;">when an unknown printer took a galley of type and scrambled it to make a type specimen book.&nbsp;</p><p style="text-align:center;">It has survived not only five centuries, but also the leap into electronic typesetting</p>`,
@@ -15,16 +15,12 @@ const templateContent = [
   `<p style="text-align:center;">when an unknownwhen an unknown printer took a galley of&nbsp;<br>type and scrambled it to make a type specimen book.&nbsp;<br><br>It has survived not only five centuries, but also&nbsp;<br>the leap into electronic typesetting</p>`,
   `<p><span style="color:hsl(210,75%,60%);">Lorem Ipsum is simply dummy</span></p><p><span class="text-big"><strong>Lorem Ipsum has been the industry's standard</strong></span></p><p><a href="#"><span class="text-big" style="background-color:hsl(30, 75%, 60%);color:hsl(0, 0%, 100%);"><strong>임시 링크</strong></span></a></p>`,
 ];
-interface Props {
-  blockIndex: number;
-  contentLayout: number;
-  childrenBlockIndex?: number;
-}
-export const Text1 = ({
+
+export const Text = ({
   blockIndex,
   contentLayout,
   childrenBlockIndex,
-}: Props) => {
+}: IndexAndContentLayoutProps) => {
   const dispatch = useDispatch();
   const fetchedContent = useSelector(
     (state: RootState) => state.editPage.page,

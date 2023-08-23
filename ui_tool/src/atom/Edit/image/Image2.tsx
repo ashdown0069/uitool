@@ -1,8 +1,5 @@
-import { ImageBox } from './ImageBox';
-interface ImageProps {
-  blockIndex: number;
-  childrenBlockIndex?: number;
-}
+import { ImageBox } from '@atom/Edit/ImageBox';
+import type { ImageProps } from 'types';
 export const Image2 = ({ blockIndex, childrenBlockIndex }: ImageProps) => {
   return (
     <div className="flex items-center justify-center h-auto gap-5 mx-auto overflow-hidden w-fit">
@@ -13,17 +10,6 @@ export const Image2 = ({ blockIndex, childrenBlockIndex }: ImageProps) => {
           childrenBlockIndex={childrenBlockIndex}
         />
       ))}
-      {/* <ImageBox
-        boxIndex={0}
-        blockIndex={blockIndex}
-        childrenBlockIndex={childrenBlockIndex}
-      />
-      <ImageBox
-        // height="300px"
-        boxIndex={1}
-        blockIndex={blockIndex}
-        childrenBlockIndex={childrenBlockIndex}
-      /> */}
     </div>
   );
 };

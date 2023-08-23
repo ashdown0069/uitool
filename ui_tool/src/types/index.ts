@@ -6,9 +6,7 @@ export type {
   Chip,
   TapProps,
   SearchProps,
-  CircleProps,
   InputLoginProps,
-  SquareNoramlProps,
   treeDataProps,
   ToolsPropsType,
   BlockDesignContent,
@@ -18,8 +16,6 @@ export type {
   EditPageContextType,
   EditPageDataType,
   btnType,
-  SquareBigProps,
-  SquareWideProps,
   InputPageProps,
   Cell,
   ModalContainerProps,
@@ -31,7 +27,34 @@ export type {
   DataType,
   ListProps,
   CheckBoxProps,
+  CardProps,
+  CardEditorProps,
+  IndexAndContentLayoutProps,
+  ImageProps,
 };
+
+interface CardProps {
+  blockIndex: number;
+  boxIndex: number;
+  childrenBlockIndex?: number;
+}
+
+interface CardEditorProps extends CardProps {
+  shape: 'circle' | 'normal' | 'wide' | 'big' | 'default';
+}
+
+interface IndexAndContentLayoutProps {
+  blockIndex: number;
+  contentLayout: number;
+  childrenBlockIndex?: number;
+}
+
+interface ImageProps {
+  boxIndex: number;
+  blockIndex: number;
+  childrenBlockIndex?: number;
+  isCircle?: boolean;
+}
 
 interface Chip {
   text: string;
@@ -43,24 +66,14 @@ interface TapProps {
   RightTo: string;
   LeftTo: string;
 }
-interface SquareNoramlProps {
-  title: string;
-  period: string;
-  description: string;
-}
+
 interface SearchProps {
   color: string;
 }
 interface InputLoginProps {
   type: 'Email' | 'Password';
 }
-interface CircleProps {
-  description: string;
-}
-// interface BlockDesignContent {
-//   id: number;
-//   svgFile: React.ReactNode;
-// }
+
 interface treeDataProps {
   title: ReactNode;
   isParent: boolean;
@@ -116,16 +129,6 @@ interface EditPageDataType {
 interface btnType {
   text: string;
   onClick: MouseEventHandler<HTMLButtonElement> | undefined;
-}
-
-interface SquareBigProps {
-  title: string;
-  description: string;
-}
-
-interface SquareWideProps {
-  title: string;
-  description: string;
 }
 
 interface InputPageProps {
