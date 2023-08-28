@@ -1,5 +1,46 @@
 import { createSlice } from '@reduxjs/toolkit';
-const initialState = {
+
+interface PageInfoTypes {
+  id: number;
+  title: string;
+  path: string;
+  date: string;
+  category: string;
+}
+
+interface PageTypes {
+  type: string;
+  contentLayout: number;
+  src: SrcTypes[];
+  link: LinkTypes[];
+  childrenContainerClassName: string;
+  children: PageChildrenTypes[];
+}
+
+interface SrcTypes {
+  srcIndex?: number;
+  imageId?: string;
+  src?: string;
+}
+
+interface LinkTypes {
+  linkIndex?: number;
+  link?: string;
+}
+
+interface PageChildrenTypes {
+  type: string;
+  contentLayout: number;
+  className: string[];
+  src: SrcTypes[];
+  link: LinkTypes[];
+}
+
+interface EditPageTypes {
+  pageInfo: PageInfoTypes;
+  page: PageTypes[];
+}
+const initialState: EditPageTypes = {
   pageInfo: {
     id: 0,
     title: '',
@@ -51,10 +92,6 @@ const sliceEditPage = createSlice({
       if (index >= 0 && index < state.page.length) {
         if (numberOfLayouts) {
           //중첩 레이아웃 구조 처음 선택시
-          // state.page[index].type = type;
-          // state.page[index].contentLayout = contentLayout;
-          // state.page[index].src = [{}];
-          // state.page[index].link = [{}];
           state.page[index].childrenContainerClassName =
             childrenContainerClassName;
           state.page[index].children = Array.from(
@@ -70,7 +107,7 @@ const sliceEditPage = createSlice({
         }
         if (state.page[index].type === 'layout' && childrenBlockIndex >= 0) {
           //레이아웃 구조에서 선택시
-          console.log('----------layout');
+
           state.page[index].children[childrenBlockIndex].type = type;
           state.page[index].children[childrenBlockIndex].contentLayout =
             contentLayout;
@@ -78,7 +115,7 @@ const sliceEditPage = createSlice({
           state.page[index].children[childrenBlockIndex].link = [{}];
         } else {
           //기존구조
-          console.log('----------non layout');
+
           state.page[index].type = type;
           state.page[index].contentLayout = contentLayout;
           state.page[index].src = [{}];
@@ -86,20 +123,6 @@ const sliceEditPage = createSlice({
         }
       }
     },
-    //아래 함수는 중첩 레이아웃구조를 위한 함수
-    // updateBlockForNestedLayout: (state, action) => {
-    //   const { index, contentLayout, numberOfLayout, groupId, type } =
-    //     action.payload;
-    //   const nestedLayoutObj = Array.from({ length: numberOfLayout }, () => ({
-    //     type,
-    //     contentLayout,
-    //     groupId,
-    //     src: [{}],
-    //     link: [[]],
-    //   }));
-    //   state.page.splice(index, numberOfLayout, ...nestedLayoutObj);
-    // },
-
     updateSrc: (state, action) => {
       const { index, src, childrenBlockIndex } = action.payload;
       if (state.page[index].type === 'layout') {
@@ -137,10 +160,10 @@ const sliceEditPage = createSlice({
     pushEmptyObjToSrcAndLink: (state, action) => {
       const { index, childrenBlockIndex } = action.payload;
       if (childrenBlockIndex !== undefined) {
-        // state.page[index].children[childrenBlockIndex].src.push({});
+        state.page[index].children[childrenBlockIndex].src.push({});
         state.page[index].children[childrenBlockIndex].link.push({});
       } else {
-        // state.page[index].src.push({});
+        state.page[index].src.push({});
         state.page[index].link.push({});
       }
     },
@@ -157,21 +180,21 @@ const sliceEditPage = createSlice({
     },
     moveUpBlock: (state, action) => {
       const { index } = action.payload;
-      if (index <= 0) return state;
+      if (index <= 0) return;
       const pageCopy = [...state.page];
       const temp = pageCopy[index];
       pageCopy[index] = pageCopy[index - 1];
       pageCopy[index - 1] = temp;
       state.page = pageCopy;
     },
+
     moveDownBlock: (state, action) => {
       const { index } = action.payload;
-      if (index >= state.page.length - 1) return state;
+      if (index >= state.page.length - 1) return;
       const pageCopy = [...state.page];
       const temp = pageCopy[index];
       pageCopy[index] = pageCopy[index + 1];
       pageCopy[index + 1] = temp;
-      console.log('pageCopy = ', pageCopy);
       state.page = pageCopy;
     },
 
@@ -188,6 +211,8 @@ const sliceEditPage = createSlice({
         contentLayout: 0,
         src: [{}],
         link: [{}],
+        childrenContainerClassName: '',
+        children: [],
       };
     },
     putNewBlockTop: (state, action) => {
@@ -198,6 +223,8 @@ const sliceEditPage = createSlice({
         contentLayout: 0,
         src: [{}],
         link: [{}],
+        childrenContainerClassName: '',
+        children: [],
       });
     },
     putNewBlockBottom: (state, action) => {
@@ -208,6 +235,8 @@ const sliceEditPage = createSlice({
         contentLayout: 0,
         src: [{}],
         link: [{}],
+        childrenContainerClassName: '',
+        children: [],
       });
     },
   },

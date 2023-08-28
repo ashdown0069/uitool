@@ -1,5 +1,4 @@
 import { ReactComponent as CloseIcon } from '@assets/icon/icon_close_white.svg';
-
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@store/store';
 import { blockModalToggle } from '@store/slice/sliceModalToggle';

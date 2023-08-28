@@ -23,7 +23,7 @@ export const useSelectBlockDesign = () => {
   return { selectedDesign, selectedType, sidebarInfo };
 };
 
-const blockDesignData: any[] = [
+const blockDesignData: BlockDesignMap[] = [
   {
     id: 1,
     type: 'image',

@@ -25,6 +25,7 @@ export default defineConfig({
       '@organism': '/src/organism',
       '@template': '/src/template',
       '@pages': '/src/pages',
+      '@types': '/src/types',
     },
   },
   optimizeDeps: {
@@ -32,6 +33,8 @@ export default defineConfig({
   },
   build: {
     commonjsOptions: {
-      exclude: ['ckeditor5-custom-build'], include: [] },
+      exclude: ['ckeditor5-custom-build'],
+      include: [],
     },
+  },
 });

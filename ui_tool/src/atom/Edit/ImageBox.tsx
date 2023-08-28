@@ -43,9 +43,11 @@ export const ImageBox = ({
     if (loadedpageData.page[blockIndex].src[boxIndex]?.imageId) {
       //기본구조
       const getImage = localStorage.getItem(
-        loadedpageData.page[blockIndex].src[boxIndex]?.imageId
+        loadedpageData.page[blockIndex].src[boxIndex].imageId
       );
-      setSelectedImage(() => getImage);
+      if (getImage) {
+        setSelectedImage(() => getImage);
+      }
       const link = loadedpageData.page[blockIndex].link[boxIndex]?.link;
       if (link?.startsWith('http://') || link?.startsWith('https://')) {
         setIsExternal(() => true);
@@ -62,7 +64,9 @@ export const ImageBox = ({
           boxIndex
         ]?.imageId
       );
-      setSelectedImage(() => getImage);
+      if (getImage) {
+        setSelectedImage(() => getImage);
+      }
       const link =
         loadedpageData.page[blockIndex].children[childrenBlockIndex]?.link[
           boxIndex

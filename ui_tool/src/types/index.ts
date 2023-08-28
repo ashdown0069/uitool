@@ -9,8 +9,8 @@ export type {
   InputLoginProps,
   treeDataProps,
   ToolsPropsType,
-  BlockDesignContent,
-  ModalBlockDesignWrapperProps,
+  BlockDesignContentList,
+  BlockDesignSelectedType,
   BlockDesignMap,
   ModalTitleProps,
   EditPageContextType,
@@ -30,30 +30,38 @@ export type {
   CardProps,
   CardEditorProps,
   IndexAndContentLayoutProps,
-  ImageProps,
+  ImageBoxProps,
+  BlockIndex,
+  ModalButtonProps,
 };
 
-interface CardProps {
+interface BlockIndex {
   blockIndex: number;
-  boxIndex: number;
   childrenBlockIndex?: number;
+}
+
+interface CardProps extends BlockIndex {
+  boxIndex: number;
 }
 
 interface CardEditorProps extends CardProps {
   shape: 'circle' | 'normal' | 'wide' | 'big' | 'default';
 }
 
-interface IndexAndContentLayoutProps {
-  blockIndex: number;
+interface IndexAndContentLayoutProps extends BlockIndex {
   contentLayout: number;
-  childrenBlockIndex?: number;
 }
 
-interface ImageProps {
+interface ImageBoxProps extends BlockIndex {
   boxIndex: number;
-  blockIndex: number;
-  childrenBlockIndex?: number;
   isCircle?: boolean;
+}
+
+interface ModalButtonProps {
+  method: 'PUT' | 'POST' | 'Dispatch';
+  boxIndex?: number;
+  blockIndex?: number;
+  childrenBlockIndex?: number;
 }
 
 interface Chip {
@@ -79,19 +87,26 @@ interface treeDataProps {
   isParent: boolean;
   key: string;
 }
-
-interface BlockDesignContent {
+type SVGElement = any;
+interface BlockDesignContentList {
   id: number;
   contentLayout: number;
-  svgEl: typeof import('*.svg');
+  svgEl: Promise<SVGElement> | typeof import('*.svg');
+  numberOfLayouts?: number;
+  childrenContainerClassName?: string;
+  childrenClassName?: string[];
 }
 
 interface BlockDesignMap {
   id: number;
   type: string;
   name: string;
-  element: () => JSX.Element;
-  contentList?: BlockDesignContent[];
+  element(): JSX.Element;
+  contentList?: BlockDesignContentList[];
+}
+
+interface BlockDesignSelectedType {
+  type: string;
 }
 
 interface ToolsPropsType {
@@ -100,9 +115,6 @@ interface ToolsPropsType {
 
 interface ModalTitleProps {
   title: string;
-}
-interface ModalBlockDesignWrapperProps {
-  type: string;
 }
 
 interface EditPageContextType {

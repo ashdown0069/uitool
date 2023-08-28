@@ -1,22 +1,20 @@
 import { useState } from 'react';
 import { ModalBlockDesignLargeBox } from '@atom/Modal/ModalBlockDesign/ModalBlockDesignLargeBox';
-import type { Cell } from 'types';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@store/store';
 import { blockModalToggle } from '@store/slice/sliceModalToggle';
 import { tableLayout } from '@store/slice/sliceTable';
 import { updateTypeAndContentLayout } from '@store/slice/sliceEditPage';
 import { LoadingSpinner } from '@atom/public/LoadingSpinner';
-interface TableProps {
-  type: string;
-}
-export const TableContent = ({ type }: TableProps) => {
+import type { BlockDesignSelectedType } from 'types';
+import type { Cell } from 'types';
+
+export const TableContent = ({ type }: BlockDesignSelectedType) => {
   const [clickedCell, setClickedCell] = useState<Cell | null>(null);
   const dispatch = useDispatch<AppDispatch>();
   const { selectedBlockIndex, selectedchildrenBlockIndex } = useSelector(
     (state: RootState) => state.modalToggle
   );
-  console.log('TableContent type = ', type);
   const handleCellClick = (row: number, col: number) => {
     setClickedCell({ row, col });
     dispatch(
@@ -35,7 +33,6 @@ export const TableContent = ({ type }: TableProps) => {
     if (!clickedCell) return false;
     return row <= clickedCell.row && col <= clickedCell.col;
   };
-  // className="flex items-center m-auto"
   return (
     <ModalBlockDesignLargeBox>
       {type === undefined && <LoadingSpinner />}
@@ -54,7 +51,6 @@ export const TableContent = ({ type }: TableProps) => {
               }`}
               onClick={() => handleCellClick(row, col)}
               onMouseEnter={() => setClickedCell({ row, col })}
-              // onMouseEnter={() => dispatch(tableLayout({ row: row, col: col }))}
               onMouseLeave={() => setClickedCell(null)}
             ></div>
           ))}

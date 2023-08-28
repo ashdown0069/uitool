@@ -1,10 +1,10 @@
 import { PropsWithChildren } from 'react';
-import type { ModalBlockDesignWrapperProps } from 'types';
+import type { BlockDesignSelectedType } from 'types';
 
 export const ModalBlockDesignWrapper = ({
   children,
   type,
-}: PropsWithChildren<ModalBlockDesignWrapperProps>) => {
+}: PropsWithChildren<BlockDesignSelectedType>) => {
   return (
     <div
       className={`flex items-center content-start w-[950px] h-[500px]  flex-wrap overflow-y-auto custom__scrollbar ${

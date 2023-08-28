@@ -12,7 +12,6 @@ import {
 } from '@store/slice/sliceEditPage';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@store/store';
-
 import { ModalBlockDesign } from '@organism/Modal/ModalBlockDesign';
 import {
   blockModalToggle,
@@ -35,14 +34,6 @@ export const EditToolsBox = ({ blockIndex }: ToolsPropsType) => {
 
   const Write = (blockIndex: number) => {};
   const ReDesignSelect = () => {
-    //setToInitialBlock 중첩구조의 경우 현재 교체가 안되서 초기화후 다시 생성해야함
-    // if (pageData.page[blockIndex].type === 'layout') {
-    //   dispatch(
-    //     setToInitialBlock({
-    //       index: blockIndex,
-    //     })
-    //   );
-    // }
     dispatch(clearIndex());
     dispatch(selectBlockIndex(blockIndex));
     dispatch(blockModalToggle());

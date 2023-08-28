@@ -2,23 +2,11 @@ import { createPortal } from 'react-dom';
 import { ModalButton } from '@atom/Modal/ModalCommon/ModalButton';
 import { ModalContainer } from '@atom/Modal/ModalCommon/ModalContainer';
 import { ModalBackDrop } from '@atom/Modal/ModalBackDrop';
-import { usePreventMouseWheel } from '@hooks/usePreventMouseWheel';
 import { ModalTitle } from '@atom/Modal/ModalCommon/ModalTitle';
 import { ModalAddMenuContent } from '@molecule/Modal/ModalAddMenuContent';
-interface props {
-  onCancel: () => void;
-}
 
-export const ModalAddMenu = ({ onCancel }: props) => {
+export const ModalAddMenu = () => {
   const modalElement = document.getElementById('modal') as HTMLElement;
-  usePreventMouseWheel();
-
-  const formData = {
-    menuName: '',
-    menuUrl: '',
-    isParent: false,
-  };
-
   return (
     <>
       {createPortal(<ModalBackDrop />, modalElement)}

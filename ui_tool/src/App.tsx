@@ -4,7 +4,6 @@ import { AdminLogin } from './pages/adminLogin';
 import { AdminManageList } from './pages/adminManageList/adminManageMenu';
 import { AdminManagePage } from '@pages/adminManageList/adminManagePage';
 import { AdminManage } from '@pages/adminManageList/adminManage';
-import TestPage from './pages/testPage';
 import { EditPage } from '@pages/editPages/editPage';
 import { AdminMangePageAction } from '@pages/adminManageList/adminManagePage';
 import { AdminManageLoader } from '@pages/adminManageList/adminManage';

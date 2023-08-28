@@ -2,15 +2,12 @@ import { AppDispatch, RootState } from '@store/store';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { useState, useRef } from 'react';
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
-import { textDefaultConfig } from '@atom/Edit/text/TextDefalutConfig';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { updateSrc } from '@store/slice/sliceEditPage';
+import type { BlockIndex } from 'types';
+import { textDefaultConfig } from '@types/TextDefaultConfig';
 
-interface Props {
-  blockIndex: number;
-  childrenBlockIndex?: number;
-}
-export const Table = ({ blockIndex, childrenBlockIndex }: Props) => {
+export const Table = ({ blockIndex, childrenBlockIndex }: BlockIndex) => {
   const editorRef = useRef(null);
   const [tableData, setTableData] = useState<any>('');
   const tableInfo = useSelector((state: RootState) => state.table);
@@ -32,12 +29,11 @@ export const Table = ({ blockIndex, childrenBlockIndex }: Props) => {
     } else {
       editorRef.current = editor;
 
-      editor.model.change((writer) => {
+      editor.model.change((writer: any) => {
         const table = writer.createElement('table', {
           headingRows: tableInfo.row,
           headingColumns: tableInfo.col,
         });
-
         for (let i = 0; i <= tableInfo.col; i++) {
           const row = writer.createElement('tableRow');
 

@@ -3,7 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@store/store';
 import { updateTypeAndContentLayout } from '@store/slice/sliceEditPage';
 import { blockModalToggle } from '@store/slice/sliceModalToggle';
-export const LayoutContent = ({ list, type }: any) => {
+import type { BlockDesignContentList } from 'types';
+export const LayoutContent = ({
+  list,
+  type,
+}: {
+  list: BlockDesignContentList[] | undefined;
+  type: string;
+}) => {
   const blockIndex = useSelector(
     (state: RootState) => state.modalToggle.selectedBlockIndex
   );
@@ -31,8 +38,8 @@ export const LayoutContent = ({ list, type }: any) => {
 
   return (
     <>
-      {list.length === 0 && <div>Loading...</div>}
-      {list.length !== 0 &&
+      {list !== undefined &&
+        list.length !== 0 &&
         list.map((el: any) => (
           <span
             key={el.id}

@@ -110,9 +110,3 @@ export const ListMenuSettingBlock = ({
     </div>
   );
 };
-/**
- * store 에서 가져온 데이터를 뿌려준다.
- * store 에서 가져온 데이터를 수정한다.
- * store 에서 가져온 데이터를 삭제한다.
- *
- */

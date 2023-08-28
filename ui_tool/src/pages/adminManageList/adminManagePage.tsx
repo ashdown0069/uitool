@@ -9,6 +9,7 @@ export const AdminManagePage = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
+    //db에 업데이트 후 리턴한값으로 다시 상태관리
     dispatch(initalizePagesInfo(data));
   }, [data, dispatch, initalizePagesInfo]);
 
@@ -19,7 +20,7 @@ export const AdminManagePage = () => {
   );
 };
 
-export const AdminMangePageAction = async ({ request, params }: any) => {
+export const AdminMangePageAction = async ({ request }: any) => {
   //추후 커스텀훅으로 대체 예정
   // const dispatch = useDispatch<AppDispatch>();
   //모달에서 확인 버튼 클릭시 데이터 넘어옴

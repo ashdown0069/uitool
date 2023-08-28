@@ -11,9 +11,9 @@ import { initalizeNavigations } from '@store/slice/sliceNavigations';
 export const AdminManage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const data = useLoaderData(); //loader 가 리턴한값 가져오기
+  const data: any = useLoaderData(); //loader 가 리턴한값 가져오기
   const currentPath = useLocation();
-  
+
   useEffect(() => {
     if (data) {
       dispatch(initalizePagesInfo(data.pagesInfo));

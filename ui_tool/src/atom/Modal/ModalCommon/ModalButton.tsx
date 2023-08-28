@@ -4,12 +4,7 @@ import { AppDispatch, RootState } from '@store/store';
 import { useDispatch } from 'react-redux';
 import { updateLink } from '@store/slice/sliceEditPage';
 import { closeAll } from '@store/slice/sliceModalToggle';
-interface ModalButtonProps {
-  method: 'PUT' | 'POST' | 'Dispatch';
-  boxIndex?: number;
-  blockIndex?: number;
-  childrenBlockIndex?: number;
-}
+import type { ModalButtonProps } from 'types';
 
 export const ModalButton = ({
   method,
@@ -30,12 +25,10 @@ export const ModalButton = ({
     if (method === 'PUT' || method === 'POST') {
       submit(data, {
         method: method,
-        action: '/adminlist/page', // 메뉴관리 페이지관리에서 사용하도록 url설정
+        action: url, // 메뉴관리 페이지관리에서 사용하도록 url설정
         encType: 'application/json',
       });
     } else if (method === 'Dispatch') {
-      console.log(data.url, boxIndex);
-      //edit page에서 사용 , index 부분 나중에 블럭 인덱스로 바꿔야함
       dispatch(
         updateLink({
           index: blockIndex,
@@ -45,11 +38,9 @@ export const ModalButton = ({
       );
     }
 
-    console.log(data);
     dispatch(closeAll());
   };
 
-  // if (!boxIndex) return <div>Loading...</div>;
   return (
     <div className="w-[614px] h-[53px] flex">
       <button

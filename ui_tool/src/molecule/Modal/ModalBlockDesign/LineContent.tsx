@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
 import { ModalBlockDesignSmallBox } from '@atom/Modal/ModalBlockDesign/ModalBlockDesignSmallBox';
-import type { BlockDesignContent } from 'types';
+import type { BlockDesignContentList } from 'types';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@store/store';
 import { updateTypeAndContentLayout } from '@store/slice/sliceEditPage';
@@ -9,8 +8,8 @@ export const LineContent = ({
   list,
   type,
 }: {
-  list: BlockDesignContent[];
-  type: any;
+  list: BlockDesignContentList[] | undefined;
+  type: string;
 }) => {
   const { selectedBlockIndex, selectedchildrenBlockIndex } = useSelector(
     (state: RootState) => state.modalToggle
@@ -31,8 +30,8 @@ export const LineContent = ({
 
   return (
     <>
-      {list.length === 0 && <div>Loading...</div>}
-      {list.length !== 0 &&
+      {list !== undefined &&
+        list.length !== 0 &&
         list.map((el: any) => (
           <span
             key={el.id}

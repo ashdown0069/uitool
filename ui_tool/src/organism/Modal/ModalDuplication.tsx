@@ -35,7 +35,6 @@ export const ModalDuplication = ({ id }: props) => {
       dispatch(clearModalState());
     };
   }, []);
-  // usePreventMouseWheel();
   return (
     <>
       {createPortal(<ModalBackDrop />, modalElement)}

@@ -1,6 +1,5 @@
 import { ReactComponent as IconMaginStick } from '@assets/icon/icon_magicStick.svg';
-import type { AddBlock } from 'types';
-import { useEffect, useState } from 'react';
+import type { BlockIndex } from 'types';
 import { ModalBlockDesign } from '@organism/Modal/ModalBlockDesign';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@store/store';
@@ -10,15 +9,11 @@ import {
   selectchildrenBlockIndex,
   clearIndex,
 } from '@store/slice/sliceModalToggle';
-interface EditAddSelectDesignProps {
-  blockIndex: number;
-  childrenBlockIndex?: number;
-}
 
 export const EditAddSelectDesign = ({
   blockIndex,
   childrenBlockIndex,
-}: EditAddSelectDesignProps) => {
+}: BlockIndex) => {
   const dispatch = useDispatch<AppDispatch>();
   const modalState = useSelector(
     (state: RootState) => state.modalToggle.modalState
@@ -31,9 +26,6 @@ export const EditAddSelectDesign = ({
     }
     dispatch(blockModalToggle());
   };
-  // if (!location.pathname.startsWith('/edit/')) {
-  //   return (null);
-  // }
   return (
     <>
       <div

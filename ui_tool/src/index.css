@@ -21,6 +21,9 @@
       'Segoe UI Symbol',
       sans-serif;
   }
+  table th {
+    width: 150px;
+  }
 }
 
 @layer components {

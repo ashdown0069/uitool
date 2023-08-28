@@ -15,6 +15,7 @@
       "@molecule/*": ["molecule/*"],
       "@organism/*": ["organism/*"],
       "@template/*": ["template/*"],
+      "@types/*": ["types/*"],
       "@pages/*": ["pages/*"]
     },
     /* Bundler mode */

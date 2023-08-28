@@ -1,10 +1,10 @@
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
-import { textDefaultConfig } from '@atom/Edit/text/TextDefalutConfig';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@store/store';
 import { updateSrc } from '@store/slice/sliceEditPage';
 import { useEffect } from 'react';
+import { textDefaultConfig } from '../../types/TextDefaultConfig';
 import type { CardEditorProps } from 'types';
 const templateMap = {
   circle: `<p style="text-align:center;"><span class="text-big">초단기한글</span></p>`,
@@ -71,7 +71,7 @@ export const CardEditor = ({
                   boxIndex
                 ]?.src
           }
-          onChange={(event: any, editor: any) => {
+          onChange={(_event: any, editor: any) => {
             const data = editor.getData();
             dispatch(
               updateSrc({

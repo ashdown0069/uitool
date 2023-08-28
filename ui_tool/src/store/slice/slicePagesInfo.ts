@@ -12,7 +12,7 @@ const slicePagesInfo = createSlice({
   name: 'pagesinfo',
   initialState: initialState,
   reducers: {
-    initalizePagesInfo: (state, action) => {
+    initalizePagesInfo: (_state, action) => {
       return action.payload;
     },
   },

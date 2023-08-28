@@ -1,6 +1,5 @@
-import type { BlockDesignContent } from 'types';
+import type { BlockDesignContentList } from 'types';
 import { ModalBlockDesignMediumBox } from '@atom/Modal/ModalBlockDesign/ModalBlockDesignMediumBox';
-import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@store/store';
 import { updateTypeAndContentLayout } from '@store/slice/sliceEditPage';
@@ -9,7 +8,7 @@ export const ListContent = ({
   list,
   type,
 }: {
-  list: BlockDesignContent[];
+  list: BlockDesignContentList[] | undefined;
   type: string;
 }) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -40,7 +39,8 @@ export const ListContent = ({
   };
   return (
     <>
-      {list.length !== 0 &&
+      {list !== undefined &&
+        list.length !== 0 &&
         list.map((el: any) => (
           <span
             key={el.id}

@@ -1,18 +1,15 @@
 import { ChipGray, ChipOrange, ChipWhite } from '@atom/public/Chip';
 import { CheckBox } from '@atom/public/CheckBox';
 import type { ListProps } from 'types';
-import { useState } from 'react';
 import { ModalDetail } from '@organism/Modal/ModalDetail';
 import { ModalDuplication } from '@organism/Modal/ModalDuplication';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@store/store';
 import { ModalDetailOpen, ModalDuplOpen } from '@store/slice/sliceModalToggle';
-/**상세/복제/디자인 버튼 기능 미구현 */
 
 /**list atom : 최상위 div w-1220px 수정해야 할 듯 */
 export const ListPage = ({ id, title, date, path, category }: ListProps) => {
-  // console.log('LIST PAGE -------------------', id, title, date, path, category);
   const { modalDetailState, modalDuplState } = useSelector(
     (state: RootState) => state.modalToggle
   );
@@ -23,7 +20,6 @@ export const ListPage = ({ id, title, date, path, category }: ListProps) => {
         <CheckBox checked={false} onChange={() => {}} />
       </div>
       <p className="basis-3/12">
-        {/* <a target="_blank" href={`/preview/${path.slice(1)}`}> */}
         <a target="_blank" href={`/${path.slice(1)}/${id}`}>
           {title}
         </a>
