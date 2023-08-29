@@ -1,15 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+interface modalToggleTypes {
+  modalState: boolean;
+  commonModalState: Index | null;
+  modalDetailState: number | null;
+  modalDuplState: number | null;
+  selectedBlockIndex: number | null;
+  selectedchildrenBlockIndex: number | null;
+}
+
+interface Index {
+  boxIndex: number;
+  blockIndex: number;
+  childrenBlockIndex?: number;
+}
+
+const initialState: modalToggleTypes = {
+  modalState: false,
+  commonModalState: null,
+  modalDetailState: null,
+  modalDuplState: null,
+  selectedBlockIndex: null,
+  selectedchildrenBlockIndex: null,
+};
+
 const sliceModalToggle = createSlice({
   name: 'modalToggle',
-  initialState: {
-    modalState: false,
-    commonModalState: null,
-    modalDetailState: null,
-    modalDuplState: null,
-    selectedBlockIndex: null,
-    selectedchildrenBlockIndex: null,
-  },
+  initialState: initialState,
   reducers: {
     blockModalToggle: (state) => {
       state.modalState = !state.modalState;

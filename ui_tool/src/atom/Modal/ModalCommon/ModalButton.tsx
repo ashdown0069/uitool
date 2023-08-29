@@ -15,7 +15,7 @@ export const ModalButton = ({
   const submit = useSubmit();
   const location = useLocation();
   const data = useSelector((state: RootState) => state.modal);
-  console.log(boxIndex, blockIndex);
+  console.log('BOX BLOCK CHILDREN', boxIndex, blockIndex, childrenBlockIndex);
   const dispatch = useDispatch<AppDispatch>();
   const submitHandler = () => {
     const url = location.pathname;

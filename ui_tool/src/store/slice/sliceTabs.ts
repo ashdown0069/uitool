@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const tabStateSlice = createSlice({
+const sliceTabs = createSlice({
   name: 'tabState',
   initialState: {
     activeTab: 0,
@@ -12,5 +12,5 @@ const tabStateSlice = createSlice({
   },
 });
 
-export const { setActiveTab } = tabStateSlice.actions;
-export default tabStateSlice;
+export const { setActiveTab } = sliceTabs.actions;
+export default sliceTabs;

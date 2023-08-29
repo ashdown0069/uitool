@@ -19,14 +19,12 @@ export const ModalLinkSetting = ({
   blockIndex,
   childrenBlockIndex,
 }: props) => {
+  console.log('BOX BLOCK CHILDREN', boxIndex, blockIndex, childrenBlockIndex);
   const modalElement = document.getElementById('modal') as HTMLElement;
   const dispath = useDispatch<AppDispatch>();
   useEffect(() => {
     //링크셋팅 렌더링 시에는 modal store 빈상태가 되어야함
-    const clearState = async () => {
-      dispath(clearModalState());
-    };
-    clearState();
+    dispath(clearModalState());
   }, []);
 
   return (

@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
-import tabStateSlice from '../pages/adminManageList/tabStateSlice';
+import sliceTabs from './slice/sliceTabs';
 import sliceBlockDesignSideBar from '@store/slice/sliceBlockDesignSideBar';
 import sliceModal from './slice/sliceModal';
 import slicePagesInfo from './slice/slicePagesInfo';
@@ -12,7 +12,7 @@ import sliceEditMode from './slice/sliceEditMode';
 export const store = configureStore({
   reducer: {
     editPage: sliceEditPage.reducer,
-    tab: tabStateSlice.reducer,
+    tab: sliceTabs.reducer,
     sidebar: sliceBlockDesignSideBar.reducer,
     modal: sliceModal.reducer,
     pagesinfo: slicePagesInfo.reducer,

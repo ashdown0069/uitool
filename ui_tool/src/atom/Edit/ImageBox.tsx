@@ -130,15 +130,32 @@ export const ImageBox = ({
         </label>
 
         <span className="hover:bg-primary-950 flex items-center justify-center w-[30px] h-[30px] bg-primary-900 rounded cursor-pointer">
-          <IconLink onClick={() => dispatch(commonModalToggle(boxIndex))} />
-          {commonModalState === boxIndex && (
+          <IconLink
+            onClick={() => {
+              dispatch(
+                commonModalToggle({
+                  blockIndex: blockIndex,
+                  childrenBlockIndex: childrenBlockIndex,
+                  boxIndex: boxIndex,
+                })
+              );
+            }}
+          />
+        </span>
+        {commonModalState &&
+          ((commonModalState.childrenBlockIndex !== undefined &&
+            commonModalState.blockIndex === blockIndex &&
+            commonModalState.childrenBlockIndex === childrenBlockIndex &&
+            commonModalState.boxIndex === boxIndex) ||
+            (commonModalState.childrenBlockIndex == undefined &&
+              commonModalState.blockIndex === blockIndex &&
+              commonModalState.boxIndex === boxIndex)) && (
             <ModalLinkSetting
-              boxIndex={boxIndex}
-              blockIndex={blockIndex}
-              childrenBlockIndex={childrenBlockIndex}
+              boxIndex={commonModalState.boxIndex}
+              blockIndex={commonModalState.blockIndex}
+              childrenBlockIndex={commonModalState.childrenBlockIndex}
             />
           )}
-        </span>
       </div>
       <div className="w-full h-full group-hover:brightness-50">
         {editMode && (
