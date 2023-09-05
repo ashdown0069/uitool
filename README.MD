@@ -585,6 +585,11 @@ git clone https://github.com/wjthinkUI/uitool.git
 yarn
 ```
 
+```tsx
+//backend folder
+npm install
+```
+
 **Step 3. client, backend 서버 실행하기**
 
 ```tsx
