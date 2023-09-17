@@ -36,13 +36,12 @@ export const DropDownMenuList = ({ onCancel }: any) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const pagesinfo = useSelector((state: RootState) => state.pagesinfo);
-  console.log('DROPDOWN MENU ========', pagesinfo);
   const handleDropDownList = async (el: any) => {
     // dispatch(setId(el.id));
     // dispatch(setTitle(el.title));
     // dispatch(setUrl(el.url));
     // dispatch(clearModalState());
-    dispatch(initalize({ id: el.id, title: el.title, url: el.path }));
+    dispatch(initalize({ title: el.title, url: el.path }));
     onCancel();
   };
   return (

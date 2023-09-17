@@ -7,9 +7,7 @@ export const ModalLinkSettingContent = () => {
   const [selectedOption, setSelectedOption] = useState('noLink');
 
   const handleRadioChange = (event: any) => {
-    console.log(event);
     setSelectedOption(() => event.target.value);
-    console.log(event.target.value);
   };
 
   return (

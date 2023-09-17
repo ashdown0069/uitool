@@ -12,7 +12,9 @@ export const AdminManageListLoader = () => {};
 
 //Similar to 'adminMangePageAction', but an Action function to update the menu
 export const AdminMangeMenuAction = async ({ request }: any) => {
+  console.log('------------action in');
   const data = await request.json();
+  console.log('request =', data);
   if (request.method === 'PUT') {
     const res = await fetch('http://localhost:5174/adminlist/menu', {
       method: 'PUT',

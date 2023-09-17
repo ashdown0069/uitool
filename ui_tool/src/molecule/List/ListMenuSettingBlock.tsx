@@ -1,4 +1,5 @@
 import { InputPageSelector } from '@atom/Input/InputPageSelectorPublic';
+// import { InputPageSelector } from '@atom/Input/InputPageSelector';
 import { InputFormPublic } from '@atom/Input/InputFormPublic';
 import { CheckBox } from '@atom/public/CheckBox';
 import { useDispatch, useSelector } from 'react-redux';
@@ -56,7 +57,7 @@ export const ListMenuSettingBlock = ({
     if (window.confirm('확인을 누르면 입력하신 내용으로 수정됩니다.')) {
       const submitData = {
         id: id,
-        idx: idx || 0,
+        idx: idx,
         title: changeTitle,
         url: changeUrl,
         // isParent: isParent,
@@ -101,6 +102,7 @@ export const ListMenuSettingBlock = ({
       <div className="flex items-center">
         <label className="text-body2m text-grayscale-600">링크</label>
         <InputPageSelector defaultValue={path} onChangeUrl={setChangeUrl} />
+        {/* <InputPageSelector defaultValue={path} /> */}
         <CheckBox checked={checked} onChange={handleBlankOptionChange} />
         <label className="ml-3 grow text-body2m text-grayscale-600">
           새창 열기

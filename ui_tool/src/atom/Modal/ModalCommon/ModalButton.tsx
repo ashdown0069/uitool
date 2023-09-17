@@ -15,7 +15,6 @@ export const ModalButton = ({
   const submit = useSubmit();
   const location = useLocation();
   const data = useSelector((state: RootState) => state.modal);
-  console.log('BOX BLOCK CHILDREN', boxIndex, blockIndex, childrenBlockIndex);
   const dispatch = useDispatch<AppDispatch>();
   const submitHandler = () => {
     const url = location.pathname;
@@ -25,7 +24,7 @@ export const ModalButton = ({
     if (method === 'PUT' || method === 'POST') {
       submit(data, {
         method: method,
-        action: url, // 메뉴관리 페이지관리에서 사용하도록 url설정
+        action: url,
         encType: 'application/json',
       });
     } else if (method === 'Dispatch') {

@@ -144,7 +144,13 @@ interface btnType {
 }
 
 interface InputPageProps {
-  type: 'title' | 'url' | 'duplTitle' | 'duplUrl';
+  type:
+    | 'title'
+    | 'url'
+    | 'duplTitle'
+    | 'duplUrl'
+    | 'addMenu'
+    | 'addMenuContent';
   inputWidth: 'short' | 'long';
   placeholder: string;
   defaultValue?: string;

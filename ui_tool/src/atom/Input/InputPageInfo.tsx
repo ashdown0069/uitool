@@ -6,6 +6,8 @@ import {
   setUrl,
   setDuplTitle,
   setDuplUrl,
+  setAddMenuTitle,
+  setAddMenuContent,
 } from '@store/slice/sliceModal';
 import type { InputPageProps } from 'types';
 //퍼센트로 바꾸기
@@ -23,6 +25,8 @@ export const InputPageInfo = ({
       url: setUrl,
       duplTitle: setDuplTitle,
       duplUrl: setDuplUrl,
+      addMenu: setAddMenuTitle,
+      addMenuContent: setAddMenuContent,
     };
     const dispathFn = inputMap[type];
     dispatch(dispathFn(e.target.value));

@@ -70,26 +70,60 @@ async function duplicatePage(id, title, url) {
   return getAllPagesInfo();
 }
 
-async function createPage(title, url, category) {
-  //수정중
+async function createNavigations(
+  id,
+  title,
+  url,
+  isParent,
+  addMenu,
+  addMenuContent = undefined
+) {
+  console.log(
+    'createNavigations = ',
+    id,
+    title,
+    url,
+    isParent,
+    addMenu,
+    addMenuContent
+  );
   const data = await readData();
-  const newPage = {
-    pageInfo: {
+  if (isParent) {
+    data.navigations.push({
+      category: {
+        id: uuidv4(),
+        name: addMenu,
+        content: addMenuContent,
+        isParent: isParent,
+        path: url,
+        date: getCurrentDate(),
+        children: [],
+      },
+    });
+  } else if (!isParent) {
+    const index = data.navigations.findIndex((el) => el.category.id === id);
+    console.log('!isParent =', index);
+    console.log('ID = ', id);
+
+    data.navigations[index].category.children.push({
       id: uuidv4(),
-      title: title,
+      idx:
+        data.navigations[index].category.children.length === 0
+          ? 0
+          : data.navigations[index].category.children.length,
+      name: addMenu,
       path: url,
-      category: category,
+      isParent: false,
       date: getCurrentDate(),
-    },
-    page: [{}],
-  };
-  data.pages.push(newPage);
+    });
+  }
   await writeData(data);
-  return true;
+  return getAllNavInfo();
 }
 
 async function deleteNavigations(id, idx = undefined) {
   const data = await readData();
+  console.log('delete id ===', id);
   console.log('idx ===', idx);
   if (idx === undefined) {
     const filteredData = data.navigations.filter(
@@ -98,7 +132,10 @@ async function deleteNavigations(id, idx = undefined) {
     data.navigations = [...filteredData];
     await writeData(data);
   } else {
-    const index = data.navigations.findIndex((el) => el.category.id === id);
+    // const index = data.navigations.findIndex((el) => el.category.id === id);
+    const index = data.navigations.findIndex((el) =>
+      el.category.children.some((el) => el.id === id)
+    );
     let selectedData = data.navigations[index];
     const filterdChildrenData = selectedData.category.children.filter(
       (el) => el.idx !== idx
@@ -112,10 +149,11 @@ async function deleteNavigations(id, idx = undefined) {
 
 async function updateNavigation(id, title, url, idx = undefined) {
   const data = await readData();
-  console.log('id title url', id, title, url);
-  console.log(data);
-  const index = data.navigations.findIndex((el) => el.category.id === id);
+  console.log('id title url idx', id, title, url, idx);
+
+  // console.log('PUT INDEX =', index);
   if (idx === undefined) {
+    const index = data.navigations.findIndex((el) => el.category.id === id);
     data.navigations[index].category = {
       ...data.navigations[index].category,
       name: title,
@@ -123,14 +161,26 @@ async function updateNavigation(id, title, url, idx = undefined) {
     };
     await writeData(data);
   } else {
+    const index = data.navigations.findIndex((el) =>
+      el.category.children.some((el) => el.id === id)
+    );
+    console.log('children INDEX = ', index);
     const childrenIndex = data.navigations[index].category.children.findIndex(
       (el, index) => index === idx
+    );
+    console.log(
+      'BEFORE',
+      data.navigations[index].category.children[childrenIndex]
     );
     data.navigations[index].category.children[childrenIndex] = {
       ...data.navigations[index].category.children[childrenIndex],
       name: title,
       path: url,
     };
+    console.log(
+      'AFTER',
+      data.navigations[index].category.children[childrenIndex]
+    );
     await writeData(data);
   }
 
@@ -171,4 +221,5 @@ exports.duplicatePage = duplicatePage;
 exports.deleteNavigations = deleteNavigations;
 exports.updateNavigation = updateNavigation;
 exports.updatePage = updatePage;
+exports.createNavigations = createNavigations;
 // exports.createPage = createPage;

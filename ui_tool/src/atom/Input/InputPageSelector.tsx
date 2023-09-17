@@ -3,14 +3,9 @@ import { ReactComponent as ArrowIcon } from '@assets/icon/icon_arrow.svg';
 import { DropDownMenuList } from './InputPageSelectorDropDown';
 import { AppDispatch, RootState } from '@store/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearModalState } from '@store/slice/sliceModal';
-export const InputPageSelector = () => {
+export const InputPageSelector = ({ defaultValue = undefined }: any) => {
   const [dropdown, setDropDown] = useState(false);
   const title = useSelector((state: RootState) => state.modal.title);
-  const dispatch = useDispatch<AppDispatch>();
-  // useEffect(() => {
-  //   dispatch(clearModalState());
-  // }, []);
   const dropDownToggle = () => {
     setDropDown((prev) => !prev);
   };
@@ -21,6 +16,7 @@ export const InputPageSelector = () => {
           type="url"
           value={title}
           disabled={true}
+          // defaultValue={defaultValue}
           placeholder="페이지 주소"
           className="w-[576px] h-[48px] rounded-[10px] bg-grayscale-50 placeholder:text-grayscale-300 pl-3 pr-12 text-body4r cursor-pointer"
         />

@@ -6,6 +6,7 @@ const {
   getAllPagesInfo,
   updatePageInfo,
   getAllNavInfo,
+  createNavigations,
   deleteNavigations,
   updateNavigation,
   getPageData,
@@ -52,20 +53,29 @@ app.get('/adminlist', async (req, res, next) => {
   res.json({ ...pagesInfoData, ...navData });
 });
 
-// app.get('/adminlist/page', async (req, res, next) => {
-//   const data = await getAllPagesInfo();
-//   console.log(data);
-//   res.json({ data: data });
-// });
-// app.get('/adminlist/menu', async (req, res, next) => {
-//   const data = await getAllPagesInfo();
-//   console.log('호출 확인');
-//   res.json({ data: data });
-// });
+//메뉴 생성
+app.post('/adminlist/menu', async (req, res, next) => {
+  const { id, title, url, isParent, addMenu, addMenuContent } = req.body;
+  console.log('req.body = ', id, title, url, isParent, addMenu, addMenuContent);
+  try {
+    const addedData = await createNavigations(
+      id,
+      title,
+      url,
+      isParent,
+      addMenu,
+      addMenuContent
+    );
+    res.status(200).json({ message: 'create success', data: addedData });
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 //메뉴수정
 app.put('/adminlist/menu', async (req, res, next) => {
   const { id, title, url, idx } = req.body;
+  console.log('PUT = ', id, title, url, idx);
   try {
     const editedData = await updateNavigation(id, title, url, idx);
     res.status(200).json({ message: 'update success', data: editedData });

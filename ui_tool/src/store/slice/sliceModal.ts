@@ -1,20 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface State { }
+interface State {}
 const initialState = {
   id: 0,
   title: '',
   url: '',
   duplTitle: '',
   duplUrl: '',
+  addMenu: '',
+  addMenuContent: '',
   blankOption: false,
+  isParent: false,
 };
 const sliceModal = createSlice({
   name: 'modal',
   initialState,
   reducers: {
     initalize: (state, action) => {
-      return action.payload;
+      return { ...state, ...action.payload };
     },
     setTitle: (state, action) => {
       state.title = action.payload;
@@ -34,12 +37,21 @@ const sliceModal = createSlice({
     setDuplUrl: (state, action) => {
       state.duplUrl = action.payload;
     },
+    setAddMenuTitle: (state, action) => {
+      state.addMenu = action.payload;
+    },
+    setAddMenuContent: (state, action) => {
+      state.addMenuContent = action.payload;
+    },
+    setIsParent: (state, action) => {
+      state.isParent = action.payload;
+    },
     setBlankOption: (state) => {
       state.blankOption = !state.blankOption;
     },
     deletePageData: (state) => {
       state = initialState;
-    }
+    },
   },
 });
 
@@ -48,8 +60,13 @@ export const {
   setTitle,
   setUrl,
   setId,
-  clearModalState, setBlankOption, deletePageData,
+  clearModalState,
+  setBlankOption,
+  deletePageData,
   setDuplTitle,
   setDuplUrl,
+  setAddMenuTitle,
+  setAddMenuContent,
+  setIsParent,
 } = sliceModal.actions;
 export default sliceModal;
