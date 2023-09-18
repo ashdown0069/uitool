@@ -10,8 +10,8 @@ interface modalToggleTypes {
 }
 
 interface Index {
-  boxIndex?: number;
   blockIndex: number;
+  boxIndex?: number;
   childrenBlockIndex?: number;
 }
 

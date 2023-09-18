@@ -6,6 +6,7 @@ interface State {
     name: string;
     path: string;
     isParent: boolean;
+    content: string;
     date: string;
     children: {
       id: number;
@@ -28,7 +29,7 @@ const sliceNavigations = createSlice({
       const isParent = action.payload.isParent;
       const id = action.payload.id;
       const idx = action.payload.idx;
-      console.log(isParent, id, idx, action.payload, 'isParent, id, idx')
+      console.log(isParent, id, idx, action.payload, 'isParent, id, idx');
       if (state && id >= 0 && id < state.length) {
         if (isParent) {
           state[id].category.name = action.payload.title;
@@ -51,12 +52,11 @@ const sliceNavigations = createSlice({
     },
     setBlankOption: (state) => {
       //checkbox true or false -> true => _blank & false => _self
-      console.log(state, 'state')
-
-
-    }
+      console.log(state, 'state');
+    },
   },
 });
 
-export const { initalizeNavigations, setTitle, setUrl, setBlankOption } = sliceNavigations.actions;
+export const { initalizeNavigations, setTitle, setUrl, setBlankOption } =
+  sliceNavigations.actions;
 export default sliceNavigations;

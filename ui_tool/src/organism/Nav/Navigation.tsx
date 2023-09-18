@@ -3,7 +3,7 @@ import { NavBottom } from '@molecule/Nav/NavBottom';
 
 export const PageNavigation = () => {
   return (
-    <div>
+    <div className="w-full">
       <NavTop />
       <NavBottom />
     </div>

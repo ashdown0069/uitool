@@ -47,7 +47,6 @@ export const ManageMenuListTree = () => {
         <div className="flex flex-col items-end gap-2">
           {menuData &&
             menuData.map((item: any, index: number, arr: any) => {
-              console.log(index);
               return (
                 <Fragment key={index}>
                   <ListParentsMenu

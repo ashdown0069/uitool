@@ -103,7 +103,7 @@ export const EditPage = () => {
   return (
     <>
       {pageData && (
-        <div className="w-screen h-auto">
+        <div className="z-10 w-screen h-auto">
           <AdabtiveTab onTabChange={handleTabChange} />
           <GridContainer
             deviceWidth={
