@@ -196,6 +196,14 @@ async function getPageData(id) {
   return page;
 }
 
+async function getPageDataByPath(path) {
+  console.log('path = ', path);
+  const data = await readData();
+  const page = data.pages.find((el) => el.pageInfo.path === '/' + path);
+  if (!page) throw new Error('can not find page');
+  return page;
+}
+
 async function updatePage(id, receivedData) {
   const data = await readData();
   // console.log(typeof id);
@@ -222,4 +230,5 @@ exports.deleteNavigations = deleteNavigations;
 exports.updateNavigation = updateNavigation;
 exports.updatePage = updatePage;
 exports.createNavigations = createNavigations;
+exports.getPageDataByPath = getPageDataByPath;
 // exports.createPage = createPage;

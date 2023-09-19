@@ -16,8 +16,8 @@ export const NavBottomChildren = ({ title, content, NavChildren }: Props) => {
       </div>
       <div className="w-2/3 h-full bg-grayscale-0">
         <ul className="flex flex-col flex-wrap h-full pt-3 pl-7 w-fit">
-          {NavChildren.map((item: any) => (
-            <li className="pt-1 w-[250px] h-[35px]">
+          {NavChildren.map((item: any, index: number) => (
+            <li key={index} className="pt-1 w-[250px] h-[35px]">
               <NavLink to={item.path}>
                 <span className="text-body2m">{item.name}</span>
               </NavLink>

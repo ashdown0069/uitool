@@ -11,6 +11,7 @@ const {
   updateNavigation,
   getPageData,
   updatePage,
+  getPageDataByPath,
 } = require('./models');
 
 app.use(bodyParser.json());
@@ -20,6 +21,7 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
+
 //편집페이지에서 페이지 불러오기
 app.get('/edit/:id', async (req, res, next) => {
   const { id } = req.params;
@@ -51,6 +53,18 @@ app.get('/adminlist', async (req, res, next) => {
   const pagesInfoData = await getAllPagesInfo();
   const navData = await getAllNavInfo();
   res.json({ ...pagesInfoData, ...navData });
+});
+
+//프리뷰 페이지 불러오기
+app.get('/:path', async (req, res, next) => {
+  const { path } = req.params;
+  // if (path == 'adminlist') return;
+  try {
+    const page = await getPageDataByPath(path);
+    res.status(200).json({ pageData: page });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 //메뉴 생성

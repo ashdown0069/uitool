@@ -1,7 +1,6 @@
-import { AdabtiveTab } from '@molecule/Edit/EditAdabtiveTab';
 import { useLoaderData } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { EditPageDataType } from 'types';
+
 import { GridContainer } from '@atom/public/GridContainer';
 import { Image1 } from '@atom/Edit/image/Image1';
 import { Image2 } from '@atom/Edit/image/Image2';
@@ -23,23 +22,25 @@ import { Text } from '@atom/Edit/text/Text';
 import { CardList } from '@atom/Edit/list/CardList';
 import { Table } from '@atom/Edit/Table';
 
-import {
-  setInitialState,
-  putNewBlockBottom,
-  putNewBlockTop,
-} from '@store/slice/sliceEditPage';
+import { setInitialState } from '@store/slice/sliceEditPage';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@store/store';
-import { EditBlock } from '@organism/Edit/EditBlock';
 import { EditAddSelectDesign } from '@molecule/Edit/EditAddSelectDesign';
 import { PageNavigation } from '@organism/Nav/Navigation';
 import { Footer } from '@organism/Nav/Footer';
-import { setEditMode } from '@store/slice/sliceEditMode';
 import { initalizeNavigations } from '@store/slice/sliceNavigations';
+
+const empty = () => {
+  return (
+    <div className="flex items-center justify-center w-full h-40 align-middle text-body1B">
+      빈 페이지 입니다
+    </div>
+  );
+};
 
 export const LAYOUT_COMPONENT: any = {
   initial: {
-    layout0: EditAddSelectDesign,
+    layout0: empty,
   },
   image: {
     layout1: Image1,

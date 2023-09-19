@@ -13,8 +13,8 @@ import {
   editPageAction,
 } from '@pages/editPages/editPageLoaderAndAction';
 import { PreviewPage } from '@pages/previewPages/previewPage';
-import { previewPageLoader } from '@pages/previewPages/previewPageLoader';
-import { previewPageAction } from '@pages/previewPages/previewPageLoader';
+import { previewPageLoader } from '@pages/previewPages/previewPageLoaderAndAction';
+import { previewPageAction } from '@pages/previewPages/previewPageLoaderAndAction';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -25,12 +25,6 @@ const router = createBrowserRouter([
     element: <EditPage />,
     loader: editPageLoader,
     action: editPageAction,
-  },
-  {
-    path: '/:path/:id',
-    element: <PreviewPage />,
-    loader: previewPageLoader,
-    action: previewPageAction,
   },
   {
     path: '/adminlist',
@@ -49,6 +43,12 @@ const router = createBrowserRouter([
         action: AdminMangePageAction,
       },
     ],
+  },
+  {
+    path: '/:path',
+    element: <PreviewPage />,
+    loader: previewPageLoader,
+    action: previewPageAction,
   },
 ]);
 function App() {

@@ -1,13 +1,15 @@
 import { redirect } from 'react-router-dom';
 //edit용 그대로 가져왔기 때문에 나중에 수정해야함
 export const previewPageLoader = async ({ request, params }: any) => {
-  const res = await fetch(`http://localhost:5174/edit/${params.id}`);
-  if (!res.ok) {
-    throw Error('fetching error, try again...');
+  if (params.path !== 'adminlist') {
+    const res = await fetch(`http://localhost:5174/${params.path}`);
+    if (!res.ok) {
+      throw Error('fetching error, try again...');
+    }
+    const resData = await res.json();
+    console.log('PageData = ', resData);
+    return resData;
   }
-  const resData = await res.json();
-  console.log('PageData = ', resData);
-  return resData;
   // return defer({ data: loadFn(params.id) });
 };
 
