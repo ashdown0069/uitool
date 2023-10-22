@@ -11,8 +11,6 @@ export const ListParentsMenu = ({
   title,
   path,
   isParent,
-  category,
-  date,
 }: ListInnerData) => {
   const submit = useSubmit();
   const [isToggle, setIsToggle] = useState(false);
@@ -60,8 +58,6 @@ export const ListParentsMenu = ({
           name={title}
           path={path}
           isParent={isParent}
-          category={category}
-          date={date}
         />
       )}
     </>
@@ -123,8 +119,6 @@ export const ListChildrenMenu = ({
           name={title}
           path={path}
           isParent={isParent}
-          category={category}
-          date={date}
         />
       )}
     </>

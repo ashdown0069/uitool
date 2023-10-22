@@ -10,7 +10,7 @@ import {
   setAddMenuContent,
 } from '@store/slice/sliceModal';
 import type { InputPageProps } from 'types';
-//퍼센트로 바꾸기
+
 export const InputPageInfo = ({
   type,
   inputWidth,

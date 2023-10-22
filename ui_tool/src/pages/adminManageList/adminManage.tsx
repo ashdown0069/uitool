@@ -41,13 +41,3 @@ export const AdminManage = () => {
     </div>
   );
 };
-export const AdminManageLoader = async () => {
-  //추후 app.tsx 파일로 옮겨야함
-  //db의 pageinfo 모두 가져오기
-  const res = await fetch('http://localhost:5174/adminlist');
-  if (!res.ok) {
-    throw Error('fetching error, try again...');
-  }
-  const resData = await res.json();
-  return resData;
-};

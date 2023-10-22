@@ -6,15 +6,7 @@ import { useEffect } from 'react';
 import { RootState } from '@store/store';
 import { updateSrc } from '@store/slice/sliceEditPage';
 import type { IndexAndContentLayoutProps } from 'types';
-const templateContent = [
-  '템플릿 추가는 이 배열에 작성',
-  `<p style="text-align:center;"><span style="color:hsl(210,75%,60%);">Lorem Ipsum is simply dummy</span></p><p style="text-align:center;"><span class="text-big"><strong>Lorem Ipsum has been the industry's standard</strong></span></p><p style="text-align:center;">when an unknown printer took a galley of type and scrambled it to make a type specimen book.&nbsp;</p><p style="text-align:center;">It has survived not only five centuries, but also the leap into electronic typesetting</p>`,
-  `<p style="text-align:center;"><span class="text-huge"><strong>Lorem Ipsum</strong></span></p><p style="text-align:center;">when an unknown printer took a galley of type and scrambled it to make a type specimen book.&nbsp;</p><p style="text-align:center;">It has survived not only five centuries, but also the leap into electronic typesetting</p>`,
-  `<p style="text-align:center;"><span class="text-huge"><strong>Lorem Ipsum has been&nbsp;</strong></span><br><span class="text-huge"><strong>the industry's standard</strong></span></p>`,
-  `<p style="text-align:center;"><span class="text-big"><strong>Lorem Ipsum has been the industry's standard</strong></span></p><p style="text-align:center;">when an unknown printer took a galley of type and scrambled it to make&nbsp;<br>a type specimen book. It has survived not only five centuries, but also&nbsp;<br>the leap into electronic typesetting</p><p style="text-align:center;"><a href="#"><span class="text-big" style="background-color:hsl(0, 0%, 30%);color:hsl(0, 0%, 100%);"><strong>임시 링크</strong></span></a></p>`,
-  `<p style="text-align:center;">when an unknownwhen an unknown printer took a galley of&nbsp;<br>type and scrambled it to make a type specimen book.&nbsp;<br><br>It has survived not only five centuries, but also&nbsp;<br>the leap into electronic typesetting</p>`,
-  `<p><span style="color:hsl(210,75%,60%);">Lorem Ipsum is simply dummy</span></p><p><span class="text-big"><strong>Lorem Ipsum has been the industry's standard</strong></span></p><p><a href="#"><span class="text-big" style="background-color:hsl(30, 75%, 60%);color:hsl(0, 0%, 100%);"><strong>임시 링크</strong></span></a></p>`,
-];
+import { TextEditorTemplateMap } from '@constant/index';
 
 export const Text = ({
   blockIndex,
@@ -39,7 +31,7 @@ export const Text = ({
           index: blockIndex,
           src: {
             srcIndex: 0,
-            src: templateContent[contentLayout],
+            src: TextEditorTemplateMap[contentLayout],
           },
         })
       );
@@ -54,7 +46,7 @@ export const Text = ({
           childrenBlockIndex: childrenBlockIndex,
           src: {
             srcIndex: 0,
-            src: templateContent[contentLayout],
+            src: TextEditorTemplateMap[contentLayout],
           },
         })
       );

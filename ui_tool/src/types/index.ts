@@ -33,7 +33,13 @@ export type {
   ImageBoxProps,
   BlockIndex,
   ModalButtonProps,
+  ModalIdProps,
+  EditBlockProps,
+  ListMenuSettingBlockProps,
 };
+interface ModalIdProps {
+  id: number;
+}
 
 interface BlockIndex {
   blockIndex: number;
@@ -215,4 +221,19 @@ interface AdabtiveTabProps {
 interface CheckBoxProps {
   checked: boolean;
   onChange: (checked: boolean) => void;
+}
+
+interface EditBlockProps {
+  children: ReactNode;
+  onClickTop: () => void;
+  onClickBottom: () => void;
+  index: number;
+}
+
+interface ListMenuSettingBlockProps {
+  id: number;
+  idx?: number;
+  name: string;
+  path: string;
+  isParent: boolean;
 }

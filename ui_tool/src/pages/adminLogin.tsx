@@ -18,6 +18,7 @@ export const AdminLogin = () => {
         </a>
       </div>
       <ButtonLogin />
+      <p className="mt-6 text-center">로그인 버튼을 바로 클릭하세요</p>
     </div>
   );
 };

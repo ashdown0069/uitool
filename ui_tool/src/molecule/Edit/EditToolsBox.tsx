@@ -70,9 +70,9 @@ export const EditToolsBox = ({ blockIndex }: ToolsPropsType) => {
           ADD
         </button>
       ) : null}
-      <button onClick={() => console.log('write')}>
+      {/* <button onClick={() => console.log('write')}>
         <IconPencil className="fill-white hover:fill-primary-900" />
-      </button>
+      </button> */}
       <button onClick={() => ReDesignSelect()}>
         <IconReset className="fill-white hover:fill-primary-900" />
       </button>

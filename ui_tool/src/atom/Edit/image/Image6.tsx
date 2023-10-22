@@ -1,4 +1,4 @@
-import { ImageBox } from '@atom/Edit/ImageBox';
+import { ImageBox } from '@atom/public/ImageBox';
 import type { BlockIndex } from 'types';
 export const Image6 = ({ blockIndex, childrenBlockIndex }: BlockIndex) => {
   return (

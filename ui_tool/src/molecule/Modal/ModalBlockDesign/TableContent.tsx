@@ -5,7 +5,6 @@ import { AppDispatch, RootState } from '@store/store';
 import { blockModalToggle } from '@store/slice/sliceModalToggle';
 import { tableLayout } from '@store/slice/sliceTable';
 import { updateTypeAndContentLayout } from '@store/slice/sliceEditPage';
-import { LoadingSpinner } from '@atom/public/LoadingSpinner';
 import type { BlockDesignSelectedType } from 'types';
 import type { Cell } from 'types';
 
@@ -35,7 +34,6 @@ export const TableContent = ({ type }: BlockDesignSelectedType) => {
   };
   return (
     <ModalBlockDesignLargeBox>
-      {type === undefined && <LoadingSpinner />}
       <div className="fixed mb-4 text-center top-32 text-body1m">
         {clickedCell
           ? `${clickedCell.row + 1} X ${clickedCell.col + 1}`

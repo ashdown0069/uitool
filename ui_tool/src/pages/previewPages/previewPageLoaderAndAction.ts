@@ -1,5 +1,5 @@
 import { redirect } from 'react-router-dom';
-//edit용 그대로 가져왔기 때문에 나중에 수정해야함
+
 export const previewPageLoader = async ({ request, params }: any) => {
   if (params.path !== 'adminlist') {
     const res = await fetch(`http://localhost:5174/${params.path}`);
@@ -10,7 +10,6 @@ export const previewPageLoader = async ({ request, params }: any) => {
     console.log('PageData = ', resData);
     return resData;
   }
-  // return defer({ data: loadFn(params.id) });
 };
 
 export const previewPageAction = async ({ request, params }: any) => {

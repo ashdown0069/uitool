@@ -4,14 +4,8 @@ import {
 } from '@molecule/Edit/EditAddBlockHere';
 import { EditGroupContainer } from '@molecule/Edit/EditGroupContainer';
 import { EditToolsBox } from '@molecule/Edit/EditToolsBox';
-import { ReactNode, useState } from 'react';
+import { EditBlockProps } from '@types/index';
 
-interface EditBlockProps {
-  children: ReactNode;
-  onClickTop: () => void;
-  onClickBottom: () => void;
-  index: number;
-}
 export const EditBlock = ({
   children,
   onClickTop,

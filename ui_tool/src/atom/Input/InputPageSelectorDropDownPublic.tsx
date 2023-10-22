@@ -1,14 +1,6 @@
-import {
-  setTitle,
-  setId,
-  setUrl,
-  initalize,
-  clearModalState,
-} from '@store/slice/sliceModal';
+import { initalize } from '@store/slice/sliceModal';
 import { AppDispatch, RootState } from '@store/store';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { useEffect } from 'react';
 
 const DUMMY_DROP_PUBLIC = [
   {
@@ -37,7 +29,10 @@ interface DropDownMenuListProps {
   onCancel: () => void;
   onSelect: (id: number, title: string, url: string) => void;
 }
-export const DropDownMenuList = ({ onCancel, onSelect }: DropDownMenuListProps) => {
+export const DropDownMenuList = ({
+  onCancel,
+  onSelect,
+}: DropDownMenuListProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const pagesinfo = useSelector((state: RootState) => state.pagesinfo);
@@ -91,4 +86,4 @@ export const DropDownMenuList = ({ onCancel, onSelect }: DropDownMenuListProps) 
   );
 };
 
-//backend DB 수정되면 사용자 추가 페이지 살리기 
+//backend DB 수정되면 사용자 추가 페이지 살리기

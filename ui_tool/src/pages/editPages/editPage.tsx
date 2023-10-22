@@ -1,7 +1,6 @@
 import { AdabtiveTab } from '@molecule/Edit/EditAdabtiveTab';
 import { useLoaderData } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { EditPageDataType } from 'types';
 import { GridContainer } from '@atom/public/GridContainer';
 import { Image1 } from '@atom/Edit/image/Image1';
 import { Image2 } from '@atom/Edit/image/Image2';
@@ -9,20 +8,21 @@ import { Image3 } from '@atom/Edit/image/Image3';
 import { Image4 } from '@atom/Edit/image/Image4';
 import { Image5 } from '@atom/Edit/image/Image5';
 import { Image6 } from '@atom/Edit/image/Image6';
-import { Line1 } from '@atom/Edit/line/line1';
-import { Line2 } from '@atom/Edit/line/line2';
-import { Line3 } from '@atom/Edit/line/line3';
-import { Line4 } from '@atom/Edit/line/line4';
-import { Line5 } from '@atom/Edit/line/line5';
-import { Line6 } from '@atom/Edit/line/line6';
-import { Line7 } from '@atom/Edit/line/line7';
-import { Line8 } from '@atom/Edit/line/line8';
-import { Line9 } from '@atom/Edit/line/line9';
-import { Line10 } from '@atom/Edit/line/line10';
+import {
+  Line1,
+  Line2,
+  Line3,
+  Line4,
+  Line5,
+  Line6,
+  Line7,
+  Line8,
+  Line9,
+  Line10,
+} from '@atom/Edit/line/line';
 import { Text } from '@atom/Edit/text/Text';
-import { CardList } from '@atom/Edit/list/CardList';
+import { CardList } from '@atom/Edit/card/CardList';
 import { Table } from '@atom/Edit/Table';
-
 import {
   setInitialState,
   putNewBlockBottom,
@@ -34,7 +34,6 @@ import { EditBlock } from '@organism/Edit/EditBlock';
 import { EditAddSelectDesign } from '@molecule/Edit/EditAddSelectDesign';
 import { PageNavigation } from '@organism/Nav/Navigation';
 import { Footer } from '@organism/Nav/Footer';
-import { setEditMode } from '@store/slice/sliceEditMode';
 
 export const LAYOUT_COMPONENT: any = {
   initial: {

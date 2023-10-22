@@ -1,5 +1,5 @@
-import { ImageBox } from '@atom/Edit/ImageBox';
-import { CardEditor } from './CardEditor';
+import { ImageBox } from '@atom/public/ImageBox';
+import { CardEditor } from '@atom/public/CardEditor';
 import type { CardProps } from 'types';
 export const CardSquareWide = ({
   blockIndex,

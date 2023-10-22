@@ -1,9 +1,7 @@
 import { InputPageSelector } from '@atom/Input/InputPageSelectorPublic';
-// import { InputPageSelector } from '@atom/Input/InputPageSelector';
 import { InputFormPublic } from '@atom/Input/InputFormPublic';
 import { CheckBox } from '@atom/public/CheckBox';
-import { useDispatch, useSelector } from 'react-redux';
-import sliceModal from '@store/slice/sliceModal';
+import { useDispatch } from 'react-redux';
 import {
   setTitle,
   setUrl,
@@ -12,16 +10,7 @@ import {
 import { ChangeEvent, useEffect, useState } from 'react';
 import { ButtonOutline } from '@atom/Button/ButtonOutline';
 import { useSubmit } from 'react-router-dom';
-
-interface ListMenuSettingBlockProps {
-  id: number;
-  idx?: number;
-  name: string;
-  path: string;
-  isParent: boolean;
-  category: string;
-  date: string;
-}
+import { ListMenuSettingBlockProps } from '@types/index';
 
 export const ListMenuSettingBlock = ({
   id,
@@ -29,24 +18,14 @@ export const ListMenuSettingBlock = ({
   name,
   path,
   isParent,
-  category,
-  date,
 }: ListMenuSettingBlockProps) => {
   const [checked, setChecked] = useState(false);
   const [changeTitle, setChangeTitle] = useState(name);
   const [changeUrl, setChangeUrl] = useState(path);
   const dispatch = useDispatch();
-  const menuData = useSelector((state: any) => state.navigations);
 
   const submit = useSubmit();
 
-  // const handleTitleChange = (event: any) => {
-  //     dispatch(setTitle(event.target.value));
-  // };
-  // const handleUrlChange = (event: any) => {
-
-  //     dispatch(setUrl(event.target.value));
-  // };
   const handleBlankOptionChange = (isChecked: boolean) => {
     setChecked(isChecked);
     // dispatch(setBlankOption());
@@ -60,9 +39,6 @@ export const ListMenuSettingBlock = ({
         idx: idx,
         title: changeTitle,
         url: changeUrl,
-        // isParent: isParent,
-        // category: category,
-        // date: date,
       };
       submit(submitData, {
         method: 'PUT',

@@ -8,12 +8,9 @@ import { useEffect } from 'react';
 import { AppDispatch, RootState } from '@store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { initalize, clearModalState } from '@store/slice/sliceModal';
+import { ModalIdProps } from '@types/index';
 
-interface props {
-  id: number;
-}
-
-export const ModalDuplication = ({ id }: props) => {
+export const ModalDuplication = ({ id }: ModalIdProps) => {
   const modalElement = document.getElementById('modal') as HTMLElement;
   const pageData = useSelector((state: RootState) => state.pagesinfo);
   const dispatch = useDispatch<AppDispatch>();

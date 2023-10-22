@@ -8,18 +8,17 @@ import { ModalTitle } from '@atom/Modal/ModalCommon/ModalTitle';
 import { clearModalState } from '@store/slice/sliceModal';
 import { AppDispatch } from '@store/store';
 import { useDispatch } from 'react-redux';
-interface props {
+import { BlockIndex } from '@types/index';
+
+interface ModalLinkSettingProps extends BlockIndex {
   boxIndex: number;
-  blockIndex: number;
-  childrenBlockIndex?: number;
 }
 
 export const ModalLinkSetting = ({
   boxIndex,
   blockIndex,
   childrenBlockIndex,
-}: props) => {
-  console.log('BOX BLOCK CHILDREN', boxIndex, blockIndex, childrenBlockIndex);
+}: ModalLinkSettingProps) => {
   const modalElement = document.getElementById('modal') as HTMLElement;
   const dispath = useDispatch<AppDispatch>();
   useEffect(() => {

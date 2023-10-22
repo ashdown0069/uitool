@@ -1,14 +1,6 @@
-import {
-  setTitle,
-  setId,
-  setUrl,
-  initalize,
-  clearModalState,
-} from '@store/slice/sliceModal';
+import { initalize } from '@store/slice/sliceModal';
 import { AppDispatch, RootState } from '@store/store';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { useEffect } from 'react';
 
 const DUMMY_DROP_PUBLIC = [
   {

@@ -51,7 +51,7 @@ export const CardList = ({
   };
 
   return (
-    <div className="relative flex items-center justify-center h-auto pt-10 pb-10 min-h-[400px]">
+    <div className="relative flex items-start justify-center h-auto pt-10 pb-10 min-h-[400px] flex-wrap">
       {blockIndex !== undefined &&
         childrenBlockIndex !== undefined &&
         pageLinkData.map((_: any, idx: number) => {

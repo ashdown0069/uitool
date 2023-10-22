@@ -25,6 +25,7 @@ export default defineConfig({
       '@organism': '/src/organism',
       '@template': '/src/template',
       '@pages': '/src/pages',
+      '@constant': '/src/constant',
       '@types': '/src/types',
     },
   },

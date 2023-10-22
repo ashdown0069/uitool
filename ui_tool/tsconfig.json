@@ -16,6 +16,7 @@
       "@organism/*": ["organism/*"],
       "@template/*": ["template/*"],
       "@types/*": ["types/*"],
+      "@constant/*": ["constant/*"],
       "@pages/*": ["pages/*"]
     },
     /* Bundler mode */

@@ -2,19 +2,16 @@ import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { ModalButton } from '@atom/Modal/ModalCommon/ModalButton';
 import { ModalContainer } from '@atom/Modal/ModalCommon/ModalContainer';
-import { ModalDetailContent } from '@molecule/Modal/ModalDetailContent';
 import { ModalBackDrop } from '@atom/Modal/ModalBackDrop';
 import { ModalTitle } from '@atom/Modal/ModalCommon/ModalTitle';
+import { ModalDetailContent } from '@molecule/Modal/ModalDetailContent';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '@store/store';
+import { AppDispatch, RootState } from '@store/store';
 import { clearModalState, initalize } from '@store/slice/sliceModal';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { RootState } from '@store/store';
-interface props {
-  id: number;
-}
+import { ModalIdProps } from '@types/index';
 
-export const ModalDetail = ({ id }: props) => {
+export const ModalDetail = ({ id }: ModalIdProps) => {
   const modalElement = document.getElementById('modal') as HTMLElement;
   const pageData = useSelector((state: RootState) => state.pagesinfo);
   const dispatch = useDispatch<AppDispatch>();
