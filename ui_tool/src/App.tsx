@@ -45,6 +45,24 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: '/signup',
+    element: (
+      <p className="mt-20 text-center text-body1B">
+        구현되지 않은 페이지 입니다
+      </p>
+    ),
+  },
+
+  {
+    path: '/find',
+    element: (
+      <p className="mt-20 text-center text-body1B">
+        구현되지 않은 페이지 입니다
+      </p>
+    ),
+  },
+
+  {
     path: '/:path',
     element: <PreviewPage />,
     loader: previewPageLoader,

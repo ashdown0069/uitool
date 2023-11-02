@@ -1,9 +1,6 @@
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { ReactComponent as ArrowIcon } from '@assets/icon/icon_arrow.svg';
-import { DropDownMenuList } from './InputPageSelectorDropDown';
-import { AppDispatch, RootState } from '@store/store';
-import { useDispatch, useSelector } from 'react-redux';
-import { clearModalState } from '@store/slice/sliceModal';
+import { DropDownMenuListPublic } from './InputPageSelectorDropDownPublic';
 
 interface InputPageSelectorProps {
   defaultValue: string;
@@ -16,11 +13,7 @@ export const InputPageSelector = ({
 }: InputPageSelectorProps) => {
   const [dropdown, setDropDown] = useState(false);
   const [value, setValue] = useState(defaultValue);
-  // const title = useSelector((state: RootState) => state.modal.title);
-  // const dispatch = useDispatch<AppDispatch>();
-  // useEffect(() => {
-  //   dispatch(clearModalState());
-  // }, []);
+
   const dropDownToggle = () => {
     setDropDown((prev) => !prev);
   };
@@ -53,7 +46,7 @@ export const InputPageSelector = ({
         </div>
       </div>
       {dropdown && (
-        <DropDownMenuList
+        <DropDownMenuListPublic
           onCancel={dropDownToggle}
           onSelect={handleSelectUrl}
         />

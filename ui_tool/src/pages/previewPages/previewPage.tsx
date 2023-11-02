@@ -1,34 +1,13 @@
 import { useLoaderData } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { GridContainer } from '@atom/public/GridContainer';
-import { Image1 } from '@atom/Edit/image/Image1';
-import { Image2 } from '@atom/Edit/image/Image2';
-import { Image3 } from '@atom/Edit/image/Image3';
-import { Image4 } from '@atom/Edit/image/Image4';
-import { Image5 } from '@atom/Edit/image/Image5';
-import { Image6 } from '@atom/Edit/image/Image6';
-import {
-  Line1,
-  Line2,
-  Line3,
-  Line4,
-  Line5,
-  Line6,
-  Line7,
-  Line8,
-  Line9,
-  Line10,
-} from '@atom/Edit/line/line';
-import { Text } from '@atom/Edit/text/Text';
-import { CardList } from '@atom/Edit/card/CardList';
-import { Table } from '@atom/Edit/Table';
 import { setInitialState } from '@store/slice/sliceEditPage';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@store/store';
 import { PageNavigation } from '@organism/Nav/Navigation';
 import { Footer } from '@organism/Nav/Footer';
 import { initalizeNavigations } from '@store/slice/sliceNavigations';
-
+import { LAYOUT_COMPONENT } from '@constant/index';
 const empty = () => {
   return (
     <div className="flex items-center justify-center w-full h-40 align-middle text-body1B">
@@ -37,40 +16,6 @@ const empty = () => {
   );
 };
 
-export const LAYOUT_COMPONENT: any = {
-  initial: {
-    layout0: empty,
-  },
-  image: {
-    layout1: Image1,
-    layout2: Image2,
-    layout3: Image3,
-    layout4: Image4,
-    layout5: Image5,
-    layout6: Image6,
-  },
-  line: {
-    layout1: Line1,
-    layout2: Line2,
-    layout3: Line3,
-    layout4: Line4,
-    layout5: Line5,
-    layout6: Line6,
-    layout7: Line7,
-    layout8: Line8,
-    layout9: Line9,
-    layout10: Line10,
-  },
-  text: {
-    layout1: Text,
-  },
-  list: {
-    layout1: CardList,
-  },
-  table: {
-    layout1: Table,
-  },
-};
 export const PreviewPage = () => {
   const [activeTab, setActiveTab] = useState<string>('desktop');
   const loadedData: any = useLoaderData();
@@ -163,6 +108,9 @@ export const PreviewPage = () => {
                 );
               } else {
                 //블럭디자인 추가에서 레이아웃 선택 X
+                if (block.type === 'initial') {
+                  return empty();
+                }
                 const Component =
                   LAYOUT_COMPONENT[block.type][
                     `layout${

@@ -7,7 +7,6 @@ import { NavBottomChildren } from './NavBottomChildren';
 
 export const NavBottom = () => {
   const navigation = useSelector((state: RootState) => state.navigations);
-  console.log(navigation);
   return (
     <nav>
       <ul className="inline-flex w-full">

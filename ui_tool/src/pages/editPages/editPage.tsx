@@ -2,27 +2,7 @@ import { AdabtiveTab } from '@molecule/Edit/EditAdabtiveTab';
 import { useLoaderData } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { GridContainer } from '@atom/public/GridContainer';
-import { Image1 } from '@atom/Edit/image/Image1';
-import { Image2 } from '@atom/Edit/image/Image2';
-import { Image3 } from '@atom/Edit/image/Image3';
-import { Image4 } from '@atom/Edit/image/Image4';
-import { Image5 } from '@atom/Edit/image/Image5';
-import { Image6 } from '@atom/Edit/image/Image6';
-import {
-  Line1,
-  Line2,
-  Line3,
-  Line4,
-  Line5,
-  Line6,
-  Line7,
-  Line8,
-  Line9,
-  Line10,
-} from '@atom/Edit/line/line';
-import { Text } from '@atom/Edit/text/Text';
-import { CardList } from '@atom/Edit/card/CardList';
-import { Table } from '@atom/Edit/Table';
+
 import {
   setInitialState,
   putNewBlockBottom,
@@ -31,44 +11,11 @@ import {
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@store/store';
 import { EditBlock } from '@organism/Edit/EditBlock';
-import { EditAddSelectDesign } from '@molecule/Edit/EditAddSelectDesign';
+
 import { PageNavigation } from '@organism/Nav/Navigation';
 import { Footer } from '@organism/Nav/Footer';
+import { LAYOUT_COMPONENT } from '@constant/index';
 
-export const LAYOUT_COMPONENT: any = {
-  initial: {
-    layout0: EditAddSelectDesign,
-  },
-  image: {
-    layout1: Image1,
-    layout2: Image2,
-    layout3: Image3,
-    layout4: Image4,
-    layout5: Image5,
-    layout6: Image6,
-  },
-  line: {
-    layout1: Line1,
-    layout2: Line2,
-    layout3: Line3,
-    layout4: Line4,
-    layout5: Line5,
-    layout6: Line6,
-    layout7: Line7,
-    layout8: Line8,
-    layout9: Line9,
-    layout10: Line10,
-  },
-  text: {
-    layout1: Text,
-  },
-  list: {
-    layout1: CardList,
-  },
-  table: {
-    layout1: Table,
-  },
-};
 export const EditPage = () => {
   const [activeTab, setActiveTab] = useState<string>('desktop');
   const loadedData: any = useLoaderData();

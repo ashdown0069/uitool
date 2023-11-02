@@ -1,3 +1,61 @@
+//edit, preview 페이지에서 사용하는 레이아웃 컴포넌트 맵
+import { Image1 } from '@atom/Edit/image/Image1';
+import { Image2 } from '@atom/Edit/image/Image2';
+import { Image3 } from '@atom/Edit/image/Image3';
+import { Image4 } from '@atom/Edit/image/Image4';
+import { Image5 } from '@atom/Edit/image/Image5';
+import { Image6 } from '@atom/Edit/image/Image6';
+import {
+  Line1,
+  Line2,
+  Line3,
+  Line4,
+  Line5,
+  Line6,
+  Line7,
+  Line8,
+  Line9,
+  Line10,
+} from '@atom/Edit/line/line';
+import { Text } from '@atom/Edit/text/Text';
+import { CardList } from '@atom/Edit/card/CardList';
+import { Table } from '@atom/Edit/Table';
+import { EditAddSelectDesign } from '@molecule/Edit/EditAddSelectDesign';
+export const LAYOUT_COMPONENT: any = {
+  initial: {
+    layout0: EditAddSelectDesign,
+  },
+  image: {
+    layout1: Image1,
+    layout2: Image2,
+    layout3: Image3,
+    layout4: Image4,
+    layout5: Image5,
+    layout6: Image6,
+  },
+  line: {
+    layout1: Line1,
+    layout2: Line2,
+    layout3: Line3,
+    layout4: Line4,
+    layout5: Line5,
+    layout6: Line6,
+    layout7: Line7,
+    layout8: Line8,
+    layout9: Line9,
+    layout10: Line10,
+  },
+  text: {
+    layout1: Text,
+  },
+  list: {
+    layout1: CardList,
+  },
+  table: {
+    layout1: Table,
+  },
+};
+
 //블록 디자인 요소중 '목록'에 있는 텍스트 에디터 기본 템플릿, atom/public/cardeditor
 export const CardEditorTemplateMap = {
   circle: `<p style="text-align:center;"><span class="text-big">초단기한글</span></p>`,
@@ -19,4 +77,27 @@ export const TextEditorTemplateMap = [
   `<p style="text-align:center;"><span class="text-big"><strong>Lorem Ipsum has been the industry's standard</strong></span></p><p style="text-align:center;">when an unknown printer took a galley of type and scrambled it to make&nbsp;<br>a type specimen book. It has survived not only five centuries, but also&nbsp;<br>the leap into electronic typesetting</p><p style="text-align:center;"><a href="#"><span class="text-big" style="background-color:hsl(0, 0%, 30%);color:hsl(0, 0%, 100%);"><strong>임시 링크</strong></span></a></p>`,
   `<p style="text-align:center;">when an unknownwhen an unknown printer took a galley of&nbsp;<br>type and scrambled it to make a type specimen book.&nbsp;<br><br>It has survived not only five centuries, but also&nbsp;<br>the leap into electronic typesetting</p>`,
   `<p><span style="color:hsl(210,75%,60%);">Lorem Ipsum is simply dummy</span></p><p><span class="text-big"><strong>Lorem Ipsum has been the industry's standard</strong></span></p><p><a href="#"><span class="text-big" style="background-color:hsl(30, 75%, 60%);color:hsl(0, 0%, 100%);"><strong>임시 링크</strong></span></a></p>`,
+];
+
+export const DefaultDropDownList = [
+  {
+    id: 1,
+    title: '메인화면',
+    path: '/adminlist',
+  },
+  {
+    id: 2,
+    title: '로그인',
+    path: '/',
+  },
+  {
+    id: 3,
+    title: '회원가입',
+    path: '/signup',
+  },
+  {
+    id: 4,
+    title: '아이디 찾기',
+    path: '/find',
+  },
 ];
